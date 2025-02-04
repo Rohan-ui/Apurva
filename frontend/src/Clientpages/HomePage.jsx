@@ -6,6 +6,7 @@ import ProductsGrid from '../Clientcomponents/ProductsGrid'
 import Blog from '../Clientcomponents/LatestBlog'
 import Counter from '../Clientcomponents/Counter'
 import WhyChooseUs from '../Clientcomponents/WhyChooseUs'
+import IndustrySection from '../Clientcomponents/component/carousel'
 // import ProductCategory from '../Clientcomponents/ProductCategory'
 function HomePage() {
   return (
@@ -13,6 +14,7 @@ function HomePage() {
 
       <Carousol />
       <Video />
+      <IndustrySection />
       {/* <ProductCategory/> */}
       <WhyChooseUs />
       <ProductsGrid />

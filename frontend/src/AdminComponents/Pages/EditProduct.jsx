@@ -19,7 +19,6 @@ const EditProductForm = () => {
     const [status, setStatus] = useState("active");
     const [categories, setCategories] = useState([]);
     const [parentCategoryId, setParentCategoryId] = useState("");
-    // const [subCategoryId, setSubCategoryId] = useState("");
     const { slugs } = useParams();
     const [initialPhotos, setInitialPhotos] = useState([]);
     const [photoAlts, setPhotoAlts] = useState([]);
@@ -29,13 +28,14 @@ const EditProductForm = () => {
     const [changeFreq, setChangeFreq] = useState()
     const [priority, setPriority] = useState(0)
     const [initialphotoAlts, setInitialPhotoAlts] = useState([]);
+    const [spec, setSpec] = useState(null);
+    const [msds, setMsds] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchProduct();
         fetchCategories();
-        // fetchAllBenefits();
     }, []);
 
     const fetchProduct = async () => {
@@ -60,13 +60,9 @@ const EditProductForm = () => {
             setChangeFreq(product.changeFreq)
             setPriority(product.priority)
 
-
-
             const categoryResponse = await axios.get(`/api/product/getSpecificCategory?categoryId=${product.categories}`, { withCredentials: true });
             const category = categoryResponse.data;
             setParentCategoryId(category.slug);
-
-
         } catch (error) {
             console.error(error);
         }
@@ -80,7 +76,6 @@ const EditProductForm = () => {
             console.error(error);
         }
     };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -101,7 +96,6 @@ const EditProductForm = () => {
             formData.append('changeFreq', changeFreq);
             formData.append('priority', priority === "" ? 0 : priority);
             formData.append('categories', parentCategoryId);
-            // formData.append('subcategories', subCategoryId);
 
             // Combine initial and new photo alts into a single array
             const combinedAlts = [...initialphotoAlts, ...photoAlts];
@@ -120,10 +114,13 @@ const EditProductForm = () => {
                 formData.append('imgTitle', a);
             });
 
-            // // Append benefits to FormData
-            // benefits.forEach((b) => {
-            //     formData.append('benefits', b);
-            // });
+            // Append spec and msds files to FormData
+            if (spec) {
+                formData.append('spec', spec);
+            }
+            if (msds) {
+                formData.append('msds', msds);
+            }
 
             const response = await axios.put(`/api/product/updateProduct?slugs=${slugs}`, formData, {
                 headers: {
@@ -141,6 +138,14 @@ const EditProductForm = () => {
     const handleFileChange = (e) => {
         const newPhotos = Array.from(e.target.files);
         setPhoto([...photo, ...newPhotos]);
+    };
+
+    const handleSpecChange = (e) => {
+        setSpec(e.target.files[0]);
+    };
+
+    const handleMsdsChange = (e) => {
+        setMsds(e.target.files[0]);
     };
 
     const handleInitialAltTextChange = (e, index) => {
@@ -166,7 +171,6 @@ const EditProductForm = () => {
         newImgTitles[index] = e.target.value;
         setImgTitle(newImgTitles);
     };
-
 
     const handleDeleteInitialPhoto = (e, photoFilename, index) => {
         e.preventDefault();
@@ -197,10 +201,7 @@ const EditProductForm = () => {
         updatedimgTitle.splice(index, 1)
         setPhotoAlts(updatedPhotoAlts);
         setImgTitle(updatedimgTitle);
-
     };
-
-
 
     const renderCategoryOptions = (category) => {
         return (
@@ -210,15 +211,10 @@ const EditProductForm = () => {
         );
     };
 
-
-
     const handleParentCategoryChange = (e) => {
         const selectedCategoryId = e.target.value;
         setParentCategoryId(selectedCategoryId);
-        // setSubCategoryId("");
-
     };
-
 
     const modules = {
         toolbar: [
@@ -393,6 +389,25 @@ const EditProductForm = () => {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            <div className="mb-4">
+                <label className="block font-semibold mb-2">Upload Spec File</label>
+                <input
+                    type="file"
+                    onChange={handleSpecChange}
+                    accept=".pdf,.doc,.docx"
+                    className="p-2 border rounded"
+                />
+            </div>
+            <div className="mb-4">
+                <label className="block font-semibold mb-2">Upload MSDS File</label>
+                <input
+                    type="file"
+                    onChange={handleMsdsChange}
+                    accept=".pdf,.doc,.docx"
+                    className="p-2 border rounded"
+                />
             </div>
             <div className="mb-4 mt-4">
                 <label htmlFor="slug" className="block font-semibold mb-2">

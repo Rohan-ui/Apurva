@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FileText } from "lucide-react";
+import InquiryForm from './InquiryForm'; // Make sure to import the InquiryForm component
 
 const MSDSSection = ({ msds, specs, name, onInquiry }) => {
+  const [isInquiryFormVisible, setIsInquiryFormVisible] = useState(false);
+
   const openPdf = (type) => {
     const baseUrl = type === 'msds' 
       ? `/api/image/msds/view/${encodeURIComponent(msds)}`
-      : `/api/image/specs/view/${encodeURIComponent(specs)}`;
+      : `/api/image/spec/view/${encodeURIComponent(specs)}`;
     window.open(baseUrl, '_blank');
   };
 
@@ -16,12 +19,20 @@ const MSDSSection = ({ msds, specs, name, onInquiry }) => {
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleInquiryClick = () => {
+    setIsInquiryFormVisible(true);
+  };
+
+  const handleCloseInquiryForm = () => {
+    setIsInquiryFormVisible(false);
+  };
+
   return (
     <div className="mt-12 bg-gradient-to-r from-gray-100 to-gray-100 p-5 shadow-md">
       <h2 className="text-xl font-semibold mb-6 text-black border-b border-red-600 pb-3">
         {name} MSDS (Material Safety Data Sheet) or SDS, COA and Specs
       </h2>
-      <div className="flex gap-4 mb-3">
+      <div className="flex flex-wrap gap-4 mb-3">
         <button 
           className="flex items-center px-4 py-2 bg-white text-black shadow-md hover:bg-red-700 hover:text-white over:border-black transition-colors duration-200"
           onClick={() => openPdf('specs')}
@@ -37,7 +48,7 @@ const MSDSSection = ({ msds, specs, name, onInquiry }) => {
           MSDS
         </button>
         <button
-          onClick={onInquiry}
+          onClick={handleInquiryClick}
           className="w-1/4 px-4 py-2 bg-red-700  text-white transition-colors duration-200 flex items-center justify-center"
         >
           Inquiry Now
@@ -55,6 +66,9 @@ const MSDSSection = ({ msds, specs, name, onInquiry }) => {
           </svg>
         </button>
       </div>
+      {isInquiryFormVisible && (
+        <InquiryForm productName={name} onClose={handleCloseInquiryForm} />
+      )}
     </div>
   );
 };
