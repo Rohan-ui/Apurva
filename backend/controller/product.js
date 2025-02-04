@@ -10,12 +10,19 @@ const ProductDetail = require("../model/productDetail")
 
 const insertProduct = async (req, res) => {
   try {
-    const { title, details, alt, imgTitle, slug, metatitle,metadescription, metakeywords, metacanonical, metalanguage, metaschema, otherMeta, categories, url, priority, changeFreq, status } = req.body;
+    const { 
+      title, details, alt, imgTitle, slug, metatitle, 
+      metadescription, metakeywords, metacanonical, 
+      metalanguage, metaschema, otherMeta, categories, 
+      url, priority, changeFreq, status 
+    } = req.body;
+
+    // Handle multiple photos
     const photo = req.files['photo'] ? req.files['photo'].map(file => file.filename) : [];
-       // Handle the specs and msds files
-       const spec = req.files?.specs?.[0]?.filename || '';
-       const msds = req.files?.msds?.[0]?.filename || '';
-    // const catalogue = req.files['catalogue'] ? req.files['catalogue'][0].filename : '';
+    
+    // Handle spec and msds files
+    const spec = req.files?.specs?.[0]?.filename || '';
+    const msds = req.files?.msds?.[0]?.filename || '';
 
     const product = new Product({
       title,
@@ -23,7 +30,8 @@ const insertProduct = async (req, res) => {
       alt,
       imgTitle,
       slug,
-      msds , spec ,
+      msds,
+      spec,
       metatitle,
       metadescription,
       metakeywords,
@@ -37,43 +45,55 @@ const insertProduct = async (req, res) => {
       priority,
       status,
       categories,
-      // subcategories,
     });
-    await product.save();
-    res.status(201).json({ message: 'Product inserted successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error inserting product' });
-  }
-}
 
+    await product.save();
+    res.status(201).json({ 
+      message: 'Product inserted successfully',
+      product
+    });
+  } catch (error) {
+    console.error('Error inserting product:', error);
+    res.status(500).json({ 
+      message: 'Error inserting product',
+      error: error.message 
+    });
+  }
+};
 
 const updateProduct = async (req, res) => {
   const { slugs } = req.query;
   const updateFields = req.body;
 
   try {
-    // Fetch the existing product to get its current photos and catalogue
+    // Fetch the existing product
     const existingProduct = await Product.findOne({ slug: slugs });
 
     if (!existingProduct) {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    // Process new uploaded photos
-    if (req.files && req.files['photo'] && req.files['photo'].length > 0) {
-      const newPhotoPaths = req.files['photo'].map(file => file.filename); // Using filename to get the stored file names
+    // Handle photos
+    if (req.files?.photo?.length > 0) {
+      const newPhotoPaths = req.files['photo'].map(file => file.filename);
       updateFields.photo = [...existingProduct.photo, ...newPhotoPaths];
     } else {
-      updateFields.photo = existingProduct.photo; // Keep existing photos if no new photos are uploaded
+      updateFields.photo = existingProduct.photo;
     }
 
-    // // Process new uploaded catalogue
-    // if (req.files && req.files['catalogue'] && req.files['catalogue'].length > 0) {
-    //   updateFields.catalogue = req.files['catalogue'][0].filename;
-    // } else {
-    //   updateFields.catalogue = existingProduct.catalogue; // Keep existing catalogue if no new catalogue is uploaded
-    // }
+    // Handle spec file
+    if (req.files?.specs?.[0]) {
+      updateFields.spec = req.files.specs[0].filename;
+    } else {
+      updateFields.spec = existingProduct.spec;
+    }
+
+    // Handle msds file
+    if (req.files?.msds?.[0]) {
+      updateFields.msds = req.files.msds[0].filename;
+    } else {
+      updateFields.msds = existingProduct.msds;
+    }
 
     const updatedProduct = await Product.findOneAndUpdate(
       { slug: slugs },
@@ -81,10 +101,20 @@ const updateProduct = async (req, res) => {
       { new: true, runValidators: true }
     );
 
-    res.status(200).json(updatedProduct);
+    if (!updatedProduct) {
+      return res.status(404).json({ message: 'Product not found during update' });
+    }
+
+    res.status(200).json({
+      message: 'Product updated successfully',
+      product: updatedProduct
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error', error });
+    console.error('Error updating product:', error);
+    res.status(500).json({ 
+      message: 'Error updating product',
+      error: error.message 
+    });
   }
 };
 
