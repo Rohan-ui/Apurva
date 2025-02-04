@@ -101,6 +101,37 @@ function App() {
     }
   }, []);
 
+  // Dynamic Favicon Setup
+useEffect(() => {
+  const fetchFavicon = async () => {
+    try {
+      const response = await axios.get('/api/logo'); // No need for 'blob' since we're handling URLs
+      const data = response.data;
+
+      // Filter to find the favicon
+      const faviconData = data.find(item => item.type === 'favicon');
+
+      if (faviconData && faviconData.photo) {
+        const faviconURL = `/api/logo/download/${faviconData.photo}`; // Adjust path as needed
+
+        let favicon = document.querySelector("link[rel~='icon']");
+        if (!favicon) {
+          favicon = document.createElement('link');
+          favicon.rel = 'icon';
+          document.head.appendChild(favicon);
+        }
+        favicon.href = faviconURL;
+      } else {
+        console.warn("Favicon not found in the API response.");
+      }
+    } catch (error) {
+      console.error("Error fetching favicon:", error);
+    }
+  };
+
+  fetchFavicon();
+}, []);
+
   const checkAuth = async () => {
     try {
         const response = await axios.get('/api/auth/check', { withCredentials: true });

@@ -8,6 +8,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { IoKeypad } from "react-icons/io5";
 import ContactUsInquiryForm from './ContactUsInquiry';
+import { BiArrowFromRight } from 'react-icons/bi';
+import { RiArrowDropDownLine } from 'react-icons/ri';
 
 
 function Navbar() {
@@ -302,7 +304,7 @@ function Navbar() {
                 {/* Mobile Menu */}
                 <div className='flex items-center  justify-between px-4 py-1 lg:px-6 lg:py-4 w-full lg:hidden'>
                     <Link to="/" className='flex  items-center '>
-                        <img src={`/api/logo/download/${colorlogo.photo}`} alt={colorlogo.alt} title={colorlogo.imgTitle} className='lg:w-1/2 w-[30%] lg:h-[70%] h-[50%]' />
+                        <img src={`/api/logo/download/${colorlogo.photo}`} alt={colorlogo.alt} title={colorlogo.imgTitle} className='lg:w-1/2 w-[50%] lg:h-[70%] ' />
                     </Link>
                     <div className='flex gap-8 justify-center items-center'>
                         <div className=' hidden md:flex xl:hidden gap-2 justify-center items-center shadow-md py-4 px-6'>
@@ -331,10 +333,10 @@ function Navbar() {
                                         <div className='flex justify-between items-center text-white w-full uppercase' onClick={() => toggleDropdown(index)}>
                                             <div onClick={() => handleMenuItemClick(item.path)}>{item.pagename}</div>
                                             {item.subItems && (
-                                                <div className='border border-gray-700'>
+                                                <div className=' border-gray-700'>
                                                     {openDropdown === index ?
-                                                        <IoIosAdd size={25} className='text-primary rotate-45 transition-all duration-500' /> :
-                                                        <IoIosAdd size={25} className='-rotate-45 transition-all duration-500' />
+                                                        <RiArrowDropDownLine  size={25} className='text-primary rotate-180 transition-all duration-800' /> :
+                                                        <RiArrowDropDownLine  size={25} className='-rotate-50 transition-all duration-800' />
                                                     }
                                                 </div>
                                             )}

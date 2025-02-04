@@ -82,7 +82,7 @@ function ProductDetail() {
         </style>
       )}
       <div className="banner-background relative bg-cover bg-center bg-no-repeat">
-        <div className="flex justify-center items-center h-[40vh] sm:h-[30vh] md:h-[30vh] md:mb-10">
+        <div className="flex justify-center items-center h-[20vh] sm:h-[30vh] md:h-[30vh] md:mb-10">
           <h1 className="font-bold text-white sm:text-2xl md:text-3xl text-xl z-10 text-center uppercase">
             {productData.title}
           </h1>
@@ -98,7 +98,7 @@ function ProductDetail() {
       </div>
 
       <div className="flex flex-col justify-center  md:flex-row gap-5 md:gap-10 mx-2 md:mx-20 ">
-        <div className=" w-1/3  ">    
+        <div className=" md:w-1/3 w-full  ">    
             <ProductImages photos={productData.photo || []} />
         </div>
         <div className="w-[90%] md:w-1/2">
