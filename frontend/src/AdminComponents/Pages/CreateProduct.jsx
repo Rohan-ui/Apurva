@@ -138,45 +138,7 @@ const NewProductForm = () => {
    
     };
 
-    // const handleSubCategoryChange = (e) => {
-    //     const selectedSubCategoryId = e.target.value;
-    //     setSubCategoryId(selectedSubCategoryId);
-       
-    // };
-
-    // const handleSubSubCategoryChange = (e) => {
-    //     const selectedSubSubCategoryId = e.target.value;
-    //     setSubSubCategoryId(selectedSubSubCategoryId);
-    // };
-
-    // const findCategoryById = (categories, id) => {
-    //     for (const category of categories) {
-    //         if (category.slug === id) return category;
-    //         if (category.subCategories) {
-    //             const subCategory = findCategoryById(category.subCategories, id);
-    //             if (subCategory) return subCategory;
-    //         }
-    //     }
-    //     return null;
-    // };
-
-    // const findSubCategories = (categories, parentCategoryId) => {
-    //     const parentCategory = findCategoryById(categories, parentCategoryId);
-    //     return parentCategory ? parentCategory.subCategories || [] : [];
-    // };
-
-    // const findSubSubCategories = (categories, parentCategoryId, subCategoryId) => {
-    //     const parentCategory = findCategoryById(categories, parentCategoryId);
-    //     if (parentCategory && parentCategory.subCategories) {
-    //         const subCategory = findCategoryById(parentCategory.subCategories, subCategoryId);
-    //         return subCategory ? subCategory.subSubCategory || [] : [];
-    //     }
-    //     return [];
-    // };
-
-    // const subCategories = parentCategoryId ? findSubCategories(categories, parentCategoryId) : [];
-    // const subSubCategories = (parentCategoryId && subCategoryId) ? findSubSubCategories(categories, parentCategoryId, subCategoryId) : [];
-
+ 
 
 
     const modules = {
@@ -240,46 +202,7 @@ const NewProductForm = () => {
                     {categories.map(renderCategoryOptions)}
                 </select>
             </div>
-            {/* {subCategories.length > 0 && (
-                <div className="mb-4">
-                    <label htmlFor="subCategory" className="block font-semibold mb-2">
-                        Subcategory (optional)
-                    </label>
-                    <select
-                        id="subCategory"
-                        value={subCategoryId}
-                        onChange={handleSubCategoryChange}
-                        className="w-full p-2 border rounded focus:outline-none"
-                    >
-                        <option value="">Select Subcategory</option>
-                        {subCategories.map((subCategory) => (
-                            <option key={subCategory._id} value={subCategory.slug}>
-                                {subCategory.category}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            )} */}
-            {/* {subSubCategories.length > 0 && (
-                <div className="mb-4">
-                    <label htmlFor="subSubCategory" className="block font-semibold mb-2">
-                        Sub-Subcategory (optional)
-                    </label>
-                    <select
-                        id="subSubCategory"
-                        value={subSubCategoryId}
-                        onChange={handleSubSubCategoryChange}
-                        className="w-full p-2 border rounded focus:outline-none"
-                    >
-                        <option value="">Select Sub-Subcategory</option>
-                        {subSubCategories.map((subSubCategory) => (
-                            <option key={subSubCategory._id} value={subSubCategory._id}>
-                                {subSubCategory.category}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            )} */}
+          
             <div className="mb-4">
                 <label htmlFor="title" className="block font-semibold mb-2">
                     Title

@@ -14,11 +14,6 @@ app.use(express.json());
  
 app.use(cookieParser());
  
-//   app.use(cors({
-//     origin: 'http://localhost:3000', 
-//     credentials: true,
-//     exposedHeaders: ['x-filename'] 
-// }));
 
 cron.schedule('59 23 31 * *', () => {
 

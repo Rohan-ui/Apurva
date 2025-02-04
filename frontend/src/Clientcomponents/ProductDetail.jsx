@@ -12,7 +12,8 @@ import { FaBacterium } from "react-icons/fa"
 import { GiHeartOrgan, GiDna2 } from "react-icons/gi"
 import { SiMicrogenetics } from "react-icons/si"
 import { RiTestTubeLine } from "react-icons/ri"
-
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import MSDSSection from "./MsdsSection"
 const iconMap = [
   GrDocumentTest,
   LuTestTube2,
@@ -71,35 +72,25 @@ function ProductDetail() {
 
   return (
     <>
-      {showInquiryForm && <InquiryForm productName={productData.title} onClose={() => setShowInquiryForm(false)} />}
-      {productData.photo && productData.photo.length > 0 && (
-        <style>
-          {`
-          .banner-background {
-            background-image: url(/api/image/download/${productData.photo[0]})
-          }
-          `}
-        </style>
-      )}
-      <div className="banner-background relative bg-cover bg-center bg-no-repeat">
-        <div className="flex justify-center items-center h-[20vh] sm:h-[30vh] md:h-[30vh] md:mb-10">
-          <h1 className="font-bold text-white sm:text-2xl md:text-3xl text-xl z-10 text-center uppercase">
-            {productData.title}
-          </h1>
-          <div className="absolute bottom-2 flex space-x-4 z-10">
-            <Link to="/" className="text-white hover:text-gray-300 ">
-              Home
-            </Link>
-            <span className="text-white">/</span>
-            <p className="text-white hover:text-gray-300 cursor-pointer ">{productData.title}</p>
-          </div>
-          <div className="absolute inset-0 bg-black opacity-40 z-1"></div>
-        </div>
+
+
+      <div className="max-w-[76rem] pb-1 mx-auto border-b md:pl-8 m-5 flex items-center space-x-4 z-10">
+        <Link to="/" className="text-gray-500 hover:text-gray-300">
+          Home
+        </Link>
+        <span className="text-gray-500">
+          <MdKeyboardDoubleArrowRight />
+        </span>
+        <p className="text-gray-500 hover:text-gray-300 cursor-pointer">Dye Intermediate</p>
+        <span className="text-red-700 ">
+          <MdKeyboardDoubleArrowRight />
+        </span>
+        <p className="text-red-700 font-medium hover:text-gray-300 cursor-pointer">{productData.title}</p>
       </div>
 
       <div className="flex flex-col justify-center  md:flex-row gap-5 md:gap-10 mx-2 md:mx-20 ">
-        <div className=" md:w-1/3 w-full  ">    
-            <ProductImages photos={productData.photo || []} />
+        <div className=" md:w-1/3 w-full  ">
+          <ProductImages photos={productData.photo || []} />
         </div>
         <div className="w-[90%] md:w-1/2">
           {activeSection === "details" && (
@@ -109,34 +100,35 @@ function ProductDetail() {
                 <ProductDetailsTable details={productDetails} />
               </div>
               <div className="space-x-5 md:space-y-2">
-          <button
-            onClick={() => setShowInquiryForm(true)}
-            className="bg-primary px-2 py-1 md:px-10 mt-3 md:py-2 float-right  rounded hover:border-b-4 border-b-primary hover:text-black hover:bg-white hover:shadow-lg text-white font-bold shadow-lg shadow-gray-200"
-          >
-            INQUIRY NOW
-          </button>
-        </div>
+                <MSDSSection/>
+                {/* <button
+                  onClick={() => setShowInquiryForm(true)}
+                  className="bg-primary px-2 py-1 md:px-10 mt-3 md:py-2 float-right  rounded hover:border-b-4 border-b-primary hover:text-black hover:bg-white hover:shadow-lg text-white font-bold shadow-lg shadow-gray-200"
+                >
+                  INQUIRY NOW
+                </button> */}
+              </div>
             </div>
           )}
         </div>
       </div>
-      
-      
-    <div className="flex flex-col justify-center items-center mx-2 md:mx-20">
-    <p className="bg-gray-100 mt-5 w-[87%]  mx-2 md:mx-20 p-5 rounded-lg">
-            <span className="text-xl  font-bold text-red-700">Description:-</span>
-            <ReactQuill
-              readOnly={true}
-              value={productData.details}
-              modules={{ toolbar: false }}
-              theme="bubble"
-              className="quill "
-            />
-      </p>
-    </div>
 
-     
-   
+
+      <div className="flex flex-col justify-center items-center mx-2 md:mx-20">
+        <p className="bg-gray-100 mt-5 w-[87%]  mx-2 md:mx-20 p-5 rounded-lg">
+          <span className="text-xl  font-bold text-red-700">Description:-</span>
+          <ReactQuill
+            readOnly={true}
+            value={productData.details}
+            modules={{ toolbar: false }}
+            theme="bubble"
+            className="quill "
+          />
+        </p>
+      </div>
+
+
+
 
       {relatedProducts.length > 0 && <RelatedProducts products={relatedProducts} iconMap={iconMap} />}
     </>

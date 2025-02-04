@@ -50,9 +50,9 @@ function ProductCategoryGrid() {
                 {category.category}
               </h1>
               <div className="absolute bottom-4 flex space-x-2 z-10">
-                <Link to="/" className="text-white hover:text-gray-300 uppercase">Home</Link>
+                <Link to="/" className="text-white hover:text-gray-300 ">Home</Link>
                 <span className="text-white">/</span>
-                <p className="text-white hover:text-gray-300  cursor-pointer uppercase">{category.category}</p>
+                <p className="text-white hover:text-gray-300  cursor-pointer ">{category.category}</p>
               </div>
               <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
             </div>
@@ -144,7 +144,7 @@ function ServiceCard({ imageSrc, icon: Icon, title, slug, alt, imgTitle }) {
 
   return (
       <>
-          <div className={`bg-white shadow-lg group h-[10cm] `}>
+          <div className={`bg-white shadow-lg group h-auto `}>
             <div className='overflow-hidden '>
                 <Link to={`/${slug}`}>
                     <img src={imageSrc} alt={alt} title={imgTitle} className="w-full h-56 object-cover bg-gray-100 transform group-hover:scale-125 transition duration-500" />

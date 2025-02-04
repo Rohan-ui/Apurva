@@ -10,8 +10,11 @@ const ProductDetail = require("../model/productDetail")
 
 const insertProduct = async (req, res) => {
   try {
-    const { title, details, alt, imgTitle, slug, metatitle, metadescription, metakeywords, metacanonical, metalanguage, metaschema, otherMeta, categories, url, priority, changeFreq, status } = req.body;
+    const { title, details, alt, imgTitle, slug, metatitle,metadescription, metakeywords, metacanonical, metalanguage, metaschema, otherMeta, categories, url, priority, changeFreq, status } = req.body;
     const photo = req.files['photo'] ? req.files['photo'].map(file => file.filename) : [];
+       // Handle the specs and msds files
+       const spec = req.files?.specs?.[0]?.filename || '';
+       const msds = req.files?.msds?.[0]?.filename || '';
     // const catalogue = req.files['catalogue'] ? req.files['catalogue'][0].filename : '';
 
     const product = new Product({
@@ -20,6 +23,7 @@ const insertProduct = async (req, res) => {
       alt,
       imgTitle,
       slug,
+      msds , spec ,
       metatitle,
       metadescription,
       metakeywords,

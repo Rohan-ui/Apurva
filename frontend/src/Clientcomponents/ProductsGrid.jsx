@@ -233,7 +233,7 @@ function ProductsGrid() {
                         <div className='py-4 lg:flex lg:items-center lg:justify-between gap-2 '>
                             <p className='text-3xl sm:text-4xl text-gray-800  font-daysOne text-center md:text-left'>{subheading}</p>
                             <p className='py-3 text-gray-500 font-semibold flex flex-wrap gap-2'>
-                                We'll Ensure you always get the best results: <Link to="/contact" className='flex items-center gap-2 text-primary font-semibold'> CONTACT US <FaArrowRight /> </Link>
+                            Explore the Latest in Chemical Innovation, and Discover Unmatched Quality: <Link to="/dye-intermediate" className='flex items-center gap-2 text-primary font-semibold'> View All  <FaArrowRight /> </Link>
                             </p>
                         </div>
                     </>

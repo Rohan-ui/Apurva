@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaArrowRight, FaRegUserCircle } from "react-icons/fa";
 import { Link, useParams } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import axios from 'axios';
@@ -88,55 +88,19 @@ function BlogPage() {
 
     return (
         <div>
-            {/* {slug && categories &&
-                <div
-                    className={`relative bg-cover bg-center bg-no-repeat`}
-                    style={{ backgroundImage: `url(/api/logo/download/${categories.photo})` }}
-                // title={formattedCategory}
-                >
-                    <div className='flex flex-col justify-center items-center h-[40vh] md:h-[30vh] mb-10'>
-                        <h1 className='font-bold text-white sm:text-2xl md:text-3xl text-xl z-10 uppercase text-center'>
-                            {categories.category}
-                        </h1>
-                        <div className="absolute bottom-4 flex space-x-2 z-10">
-                            <Link to="/" className="text-white hover:text-gray-300 uppercase">Home</Link>
-                            <span className="text-white">/</span>
-                            <p className="text-white hover:text-gray-300  cursor-pointer uppercase">{categories.category}</p>
-                        </div>
-                        <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
-                    </div>
-                </div>
-            } */}
-
-            {/* {slug && (
-                <>
-                    <p className='text-center w-[80%] font-semibold mx-auto'>{categories.description}</p>
-                    <div className='p-5 m-4 shadow-md rounded mb-8'>
-                        <div className="flex items-center py-2 gap-2">
-                            <input
-                                className="font-nunito appearance-none bg-white border border-gray-300 rounded w-full text-gray-700 py-4 px-2 leading-tight focus:outline-none"
-                                type="text"
-                                placeholder="SEARCH POST"
-                                aria-label="Search"
-                                value={searchQuery}
-                                onChange={handleSearchInputChange}
-                            />
-                            <button className="flex-shrink-0 text-white bg-gray-900 hover:text-white hover:bg-red-500 p-4 rounded">
-                                <FiSearch size={20} />
-                            </button>
-                        </div>
-                    </div>
-                </>
-            )} */}
+           
 
                 <>
                     <div className='md:px-20 p-4 mt-16 '>
                         <div>
                             <p className='text-primary md:text-[20px] font-bold pb-8 uppercase text-center md:text-left'>____ {heading}</p>
                         </div>
-                        <div className='py-2 lg:flex lg:items-center lg:justify-between gap-2'>
-                            <p className='text-3xl sm:text-4xl text-gray-800 font-daysOne text-center md:text-left'>{subheading}</p>
-                        </div>
+                       <div className='py-4 lg:flex lg:items-center lg:justify-between gap-2 '>
+                                                 <p className='text-3xl sm:text-4xl text-gray-800  font-daysOne text-center md:text-left'>{subheading}</p>
+                                                 <p className='py-3 text-gray-500 font-semibold flex flex-wrap gap-2'>
+                                                 Explore Fresh Perspectives on Products and Industry Innovations.: <Link to="/blogs" className='flex items-center gap-2 text-primary font-semibold'> View All  <FaArrowRight /> </Link>
+                                                 </p>
+                                             </div>
                     </div>
                 </>
          

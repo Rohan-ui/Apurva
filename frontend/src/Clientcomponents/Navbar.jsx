@@ -430,10 +430,7 @@ function Navbar() {
                                         </span>
                                         </p>
                                     </div>
-                                    <div className='flex gap-2 justify-center items-center'>
-                                        <FaRegClock className='text-primary' />
-                                        <p className='uppercase font-bold text-[14px] text-gray-500 '>{openingHours}</p>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             {/* Menu Items */}
