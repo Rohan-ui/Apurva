@@ -78,7 +78,7 @@ const EditHeader = () => {
       </div>
       <div className="mb-4">
         <label htmlFor="openingHours" className="block font-semibold mb-2">
-          Opening Hours
+          Email Address
         </label>
         <input
           type="text"

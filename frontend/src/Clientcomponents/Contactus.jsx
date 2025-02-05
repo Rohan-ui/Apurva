@@ -136,8 +136,8 @@ function Contactus() {
                 <div className=" border shadow border-[#ECEEF3] hover:border-primary rounded pl-[25px] pr-[25px] py-[51px]">
                     <div className="flex flex-col items-center mb-2 ">
                      
-                        <img className='py-4' src={img3} alt="Opening Hours" title='Opening Hours' />
-                        <h3 className="text-2xl font-bold text-gray-800 ml-2 text-center">Opening Hours</h3>
+                        <img className=' border rounded-md border-red-700 ' src={img3} alt="Opening Hours" title='Opening Hours' />
+                        <h3 className="text-2xl font-bold text-gray-800 ml-2 text-center">Email Address</h3>
                     </div>
                     <p className="text-gray-700 text-center text-lg">{openingHours}</p>
                     {/* <p className="text-indigo-950 text-center text-lg">09:00 AM - 05:00 PM</p> */}
