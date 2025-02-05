@@ -235,7 +235,7 @@ useEffect(() => {
           //industry section
           <Route path="/industry" element={<Industry />} />
           <Route path="/industry-form" element={<CreateIndustry />} />
-          <Route path="/industry/editIndustry/:id" element={<CreateIndustry />} />
+          <Route path="/industry-form/:id" element={<CreateIndustry />} />
           </Route>
         )}
       </Routes>

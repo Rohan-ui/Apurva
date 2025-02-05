@@ -59,9 +59,7 @@ function Video() {
                     </div>
 
                     <div className='py-5 space-y-10 xl:w-1/2'>
-                        <div>
-                            <p className='text-primary text-[20px] font-bold uppercase text-center md:text-left '>____{pagecontent.heading}</p>
-                        </div>
+                       
                         <div className='mt-5'>
                             <p className='text-3xl sm:text-4xl font-daysOne md:px-0 md:text-[40px] text-gray-800 mt-4 text-center md:text-left '>{pagecontent.subheading}</p>
                             {location.pathname == '/aboutus' ? <p className='justify-center mt-8'>

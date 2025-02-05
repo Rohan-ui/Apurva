@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
 
 const CreateIndustry = () => {
     const { id } = useParams();
@@ -14,7 +13,6 @@ const CreateIndustry = () => {
 
     useEffect(() => {
         if (id) {
-            // Fetch existing data
             const fetchData = async () => {
                 try {
                     const response = await axios.get(`/api/industry/${id}`);
@@ -22,8 +20,8 @@ const CreateIndustry = () => {
                     setTitle(title);
                     setIcon(icon);
                     setImage(image);
-                    setIconPreview(`/uploads/${icon}`);
-                    setImagePreview(`/uploads/${image}`);
+                    setIconPreview(`/api/image/download/${icon}`);
+                    setImagePreview(`/api/image/download/${image}`);
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
@@ -48,62 +46,67 @@ const CreateIndustry = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('title', title);
-        if (icon instanceof File) {
-            formData.append('icon', icon);
-        }
-        if (image instanceof File) {
-            formData.append('image', image);
-        }
+        if (icon instanceof File) formData.append('icon', icon);
+        if (image instanceof File) formData.append('image', image);
 
         try {
             if (id) {
-                // Update existing data
                 await axios.put(`/api/industry/update/${id}`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                    headers: { 'Content-Type': 'multipart/form-data' }
                 });
             } else {
-                // Add new data
                 await axios.post('/api/industry/add', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                    headers: { 'Content-Type': 'multipart/form-data' }
                 });
             }
-            navigate('/industry'); // Redirect to the list page after submission
+            navigate('/industry');
         } catch (error) {
             console.error('Error submitting form:', error);
         }
     };
 
     return (
-        <Container>
-            <Typography variant="h4" gutterBottom>
-                {id ? 'Update Chemical Fertilizer' : 'Add Chemical Fertilizer'}
-            </Typography>
-            <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <TextField
-                    label="Title"
+        <div className="w-full md:w-1/2  p-4 bg-white shadow-md rounded-lg ">
+            <h1 className="text-2xl font-bold  mb-4">
+                {id ? 'Update Industry' : 'Add Industry'}
+            </h1>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+             <div className='flex gap-3 items-center'>
+             <label htmlFor="">Title:</label>
+                <input
+                    type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Title"
+                    className="border border-gray-300 rounded p-2"
                     required
                 />
-                <Button variant="contained" component="label">
+             </div>
+
+                <label className="flex flex-col items-center border-2 border-dashed p-4 cursor-pointer">
                     Upload Icon
-                    <input type="file" hidden onChange={handleIconChange} />
-                </Button>
-                {iconPreview && <img src={iconPreview} alt="Icon Preview" style={{ width: '100px', height: '100px' }} />}
-                <Button variant="contained" component="label">
+                    <input type="file" className="hidden" onChange={handleIconChange} />
+                </label>
+                {iconPreview && (
+                    <img src={iconPreview} alt="Icon Preview" className="w-24 h-24 object-cover " />
+                )}
+
+                <label className="flex flex-col items-center border-2 border-dashed p-4 cursor-pointer">
                     Upload Image
-                    <input type="file" hidden onChange={handleImageChange} />
-                </Button>
-                {imagePreview && <img src={imagePreview} alt="Image Preview" style={{ width: '100px', height: '100px' }} />}
-                <Button type="submit" variant="contained" color="primary">
-                    Submit
-                </Button>
-            </Box>
-        </Container>
+                    <input type="file" className="hidden" onChange={handleImageChange} />
+                </label>
+                {imagePreview && (
+                    <img src={imagePreview} alt="Image Preview" className="w-24 h-24 object-cover " />
+                )}
+
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
+                >
+                    {id ? 'Update' : 'Submit'}
+                </button>
+            </form>
+        </div>
     );
 };
 

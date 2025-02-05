@@ -83,11 +83,11 @@ function BlogPage() {
               title={banner.title}
             >
               <div className='flex justify-center items-center h-[40vh] md:h-[30vh]'>
-                <h1 className='font-semibold text-white sm:text-2xl md:text-3xl text-xl z-10 uppercase'>{banner.title}</h1>
+                <h1 className='font-semibold text-white sm:text-2xl md:text-3xl text-xl z-10 '>{banner.title}</h1>
                 <div className="absolute bottom-4 flex space-x-2 z-10">
-                  <Link to="/" className="text-white hover:text-gray-300 uppercase">Home</Link>
+                  <Link to="/" className="text-white hover:text-gray-300 ">Home</Link>
                   <span className="text-white">/</span>
-                  <a href="#" className="text-white hover:text-gray-300  cursor-pointer uppercase">{banner.title}</a>
+                  <a href="#" className="text-white hover:text-gray-300  cursor-pointer ">{banner.title}</a>
                 </div>
                 <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
               </div>

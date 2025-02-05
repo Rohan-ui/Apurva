@@ -42,11 +42,11 @@ function ContactusImg() {
                         title={banner.title}
                     >
                         <div className='flex justify-center items-center h-[40vh] md:h-[30vh] mb-10'>
-                            <h1 className='font-bold text-white sm:text-2xl md:text-3xl text-xl z-10 uppercase'>{banner.title}</h1>
+                            <h1 className='font-bold text-white sm:text-2xl md:text-3xl text-xl z-10 '>{banner.title}</h1>
                             <div className="absolute bottom-4 flex space-x-2 z-10">
-                                <Link to="/" className="text-white hover:text-gray-300 uppercase">Home</Link>
+                                <Link to="/" className="text-white hover:text-gray-300 ">Home</Link>
                                 <span className="text-white">/</span>
-                                <p className="text-white hover:text-gray-300  cursor-pointer uppercase">{banner.title}</p>
+                                <p className="text-white hover:text-gray-300  cursor-pointer ">{banner.title}</p>
                             </div>
                             <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
                         </div>
