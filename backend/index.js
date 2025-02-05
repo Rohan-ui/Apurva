@@ -65,6 +65,7 @@ app.use('/api/ourpeople', require('./routes/ourpeople'));
 app.use('/api/packagingdetail', require('./routes/packagingdetail'));
 app.use('/api/packagingtype', require('./routes/packagingtype'));
 app.use('/api/dynamicSlug', require('./routes/dynamicSlug'));
+app.use('/api/industry', require('./routes/industry'));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 

@@ -76,6 +76,15 @@ export default function Sidebar() {
         { title: "News/Blogs", icon: <PiNewspaperClippingBold size={20} />, path: "/news" },
       ]
     },
+    
+    //industry
+    {
+      title: "Industry", icon: <GiThreeLeaves size={20} />, submenu: [
+        { title: "Industry", icon: <GiThreeLeaves size={20} />, path: "/industry"
+       },
+       
+      ]
+    },
 
     { title: "Menu Listing", icon: <FaListOl size={20} />, path: "/menulisting" },
     { title: "Inquiries", icon: <FaPhone size={20} />, path: "/Inquiry" },

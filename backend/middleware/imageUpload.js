@@ -11,11 +11,10 @@ if (!fs.existsSync(uploadDir)) {
 
 const multer = require('multer');
 
-
 // Define storage for uploaded photos
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, uploadDir); // Save uploaded photos in the 'images' directory
+        cb(null, uploadDir); // Save uploaded photos in the 'uploads' directory
     },
     filename: function (req, file, cb) {
         const fileName = `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`;
@@ -23,11 +22,10 @@ const storage = multer.diskStorage({
     }
 });
 
-
 // Initialize multer with defined storage options and explicit boundary
 const upload = multer({ 
     storage: storage,
-    limits: { fileSize: 50 * 1024 * 1024 }, // Limit file size to 5MB
+    limits: { fileSize: 50 * 1024 * 1024 }, // Limit file size to 50MB
     fileFilter: function (req, file, cb) {
         // Check file types here if needed
         cb(null, true);
@@ -35,8 +33,10 @@ const upload = multer({
     // Set the explicit boundary string
 });
 
-// Middleware function to handle file uploads for shop photos
-const uploadImage = upload.single('images'); // Accepts up to 5 photos, change as needed
-
+const uploadImage = upload.fields([
+    { name: 'images', maxCount: 5 }, // Accepts up to 5 photos for 'images' field
+    { name: 'image', maxCount: 1 },  // Accepts 1 photo for 'image' field
+    { name: 'icon', maxCount: 1 }    // Accepts 1 photo for 'icon' field
+]); 
 
 module.exports = { uploadImage };

@@ -86,6 +86,8 @@ import SlugPage from './Clientpages/SlugPage';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Industry from './AdminComponents/industry/IndustryTable';
+import CreateIndustry from './AdminComponents/industry/IndustryForm';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -229,7 +231,11 @@ useEffect(() => {
             <Route path="/newsletter" element={<Newsletter />} />
             <Route path="/ourpeople" element={<OurPeople />} />
             <Route path="/packagingdetail" element={<PackagingDetail />} />
-
+          
+          //industry section
+          <Route path="/industry" element={<Industry />} />
+          <Route path="/industry-form" element={<CreateIndustry />} />
+          <Route path="/industry/editIndustry/:id" element={<CreateIndustry />} />
           </Route>
         )}
       </Routes>
