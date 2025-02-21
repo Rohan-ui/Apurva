@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const productDetailSchema = new Schema({
-    CASNo: { type: String },
+    CASNo: { type: String ,default: ''}, 
     formula: { type: String },
     MW: { type: String },
     synonym: { type: String },

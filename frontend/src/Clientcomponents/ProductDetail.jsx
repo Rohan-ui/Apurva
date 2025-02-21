@@ -48,8 +48,8 @@ function ProductDetail() {
   useEffect(() => {
     fetchData()
     fetchRelatedData()
-  }, [])
-
+  }, [slug]) // Add slug as a dependency
+  
   const fetchData = async () => {
     try {
       const response = await axios.get(`/api/product/getDataBySlug?slugs=${slug}`)
@@ -82,7 +82,7 @@ function ProductDetail() {
         <span className="text-gray-500">
           <MdKeyboardDoubleArrowRight />
         </span>
-        <p className="text-gray-500 hover:text-gray-300 cursor-pointer">Dye Intermediate</p>
+        <Link to="/dye-intermediate" className="text-gray-500 hover:text-gray-300 cursor-pointer">Dye Intermediate</Link>
         <span className="text-red-700 ">
           <MdKeyboardDoubleArrowRight />
         </span>

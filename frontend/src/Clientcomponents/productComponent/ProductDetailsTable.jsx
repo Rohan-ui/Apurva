@@ -1,6 +1,6 @@
 export const ProductDetailsTable = ({ details }) => {
   const rows = [
-    { label: "CAS No.", value: details.CASNo || "N/A" },
+    { label: "CAS No.", value: details.CASNo || "" },
     { label: "Formula", value: details.formula || "N/A" },
     { label: "EINECS", value: details.EINECS || "N/A" },
     { label: "Molecular Weight", value: details.MW || "N/A" },
@@ -9,7 +9,7 @@ export const ProductDetailsTable = ({ details }) => {
     { label: "Density", value: details.density  || "N/A"},
     { label: "Purity", value: details.purity  || "N/A"},
     { label: "Packing", value: details.packing  || "N/A"},
-  ]
+  ] 
 
   // Add Synonym conditionally if it exists
   if (details.synonym) {
