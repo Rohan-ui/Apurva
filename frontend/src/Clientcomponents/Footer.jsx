@@ -128,10 +128,13 @@ const Footer = () => {
                     <div>
                         <h5 className="text-lg font-bold mb-4">Location</h5>
                         <iframe src={location} className='border-0 space-y-2 h-[90%] w-full rounded-md' allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                <div className='flex justify-between items-center space-x-4  float-end max-w-5xl text-gray-500  mt-9 text-sm space-y-2'>
+                 <Link to="/privacy-policy">   <p className='mt-2 hover:text-gray-700 cursor-pointer'>Privacy Policy</p></Link>
+                
+                <Link to="/terms-and-conditions"> <p className=' hover:text-gray-700 cursor-pointer'>Terms & Conditions</p></Link>
+                </div>
                     </div>
                 </div>
-
-                {/* Social Media Links */}
                 <div className="flex justify-end space-x-4 mt-8 pr-5">
                     <a href={facebooklink} target='_blank' className="text-gray-600 hover:text-primary"><FaFacebookF /></a>
                     <a href={twitterlink} target='_blank' className="text-gray-600 hover:text-primary"><FaXTwitter /></a>
@@ -139,18 +142,12 @@ const Footer = () => {
                     <a href={youtubelink} target='_blank' className="text-gray-600 hover:text-primary"><FaYoutube /></a>
                 </div>
 
-                {/* Copyright and Links */}
-                {/* <div className="text-center md:mt-8 mt-16 lg:flex justify-between items-center border-t-2"> */}
+                {/* Social Media Links */}
+               
 
-                <p className="text-gray-500 font-semibold mt-8 text-center">Copyright {currentYear} © Apurva Chemicals Pvt. Ltd. All Rights Reserved. Designed & Developed by  <span className='text-primary font-bold '><a href="https://rndtechnosoft.com/" target='_blank'>RnD Technosoft</a></span></p>
 
-                {/* <div className="flex md:flex-row flex-col justify-center space-x-4 mt-2">
-                        <a href="#" className="text-gray-500 hover:text-red-500">Terms and conditions</a>
-                        <a href="#" className="text-gray-500 hover:text-red-500">Privacy policy</a>
-                        <a href="#" className="text-gray-500 hover:text-red-500">Pricing</a>
-                    </div> */}
-                {/* </div> */}
             </div>
+                <p className="text-gray-500 font-semibold mt-8 text-center pt-10">Copyright {currentYear} © Apurva Chemicals Pvt. Ltd. All Rights Reserved. Designed & Developed by  <span className='text-primary font-bold '><a href="https://rndtechnosoft.com/" target='_blank'>RnD Technosoft</a></span></p>
         </footer>
     );
 };

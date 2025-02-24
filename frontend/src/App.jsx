@@ -88,6 +88,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Industry from './AdminComponents/industry/IndustryTable';
 import CreateIndustry from './AdminComponents/industry/IndustryForm';
+import TermsAndConditions from './Clientpages/TermsAndCondition';
+import PrivacyPolicy from './Clientpages/PrivacyPolicy';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -161,9 +163,8 @@ useEffect(() => {
               <Route path="/team" element={<TeamPage />} />
               <Route path="/contact-us" element={<ContactusPage />} />
                <Route path="/blogs" element={<BlogPage />} />
-              {/* <Route path="/product/:slugs" element={<ProductDetailPage />} />
-              <Route path="/productcategories/:slugs" element={<ProductCategoryGrid />} /> */}
-              {/* <Route path="/:categorySlug/:subCategorySlug" element={<SubCategoryProductGrid />} /> */}
+               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
             </Route>
             <Route path="/login" element={<Login />} />
