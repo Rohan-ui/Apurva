@@ -11,7 +11,6 @@ function MissionSection({ data }) {
           <h2 className="text-3xl font-bold text-gray-800">{title}</h2>
           <ReactQuill value={description} readOnly={true} theme="bubble" className="prose max-w-none text-gray-600" />
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 md:mt-0">
           <img
             src={`/api/image/download/${photo[0]}`}

@@ -4,7 +4,6 @@ import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-
 function InquiryForm({ productName, onClose }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -16,7 +15,7 @@ function InquiryForm({ productName, onClose }) {
     const [errorMessage, setErrorMessage] = useState('');
     const [clientIp, setClientIp] = useState('');
     const [utmParams, setUtmParams] = useState({});
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch the client's IP address
@@ -86,16 +85,28 @@ function InquiryForm({ productName, onClose }) {
         }
     };
 
+    const formatDate = () => {
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        return `${day}/${month}/${year} | ${hours}:${minutes}`;
+    };
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-2 md:p-4 md:rounded-lg shadow-2xl w-full max-w-lg relative">
+            <div className="bg-white p-2 md:p-4 md:rounded-lg shadow-2xl w-full max-w-2xl relative">
                 <button
                     onClick={onClose}
                     className="absolute top-3 right-3 text-gray-700 hover:text-primary"
                 >
                     <FaTimes size={25} />
                 </button>
-                <h2 className="text-2xl font-semibold  text-gray-800 w-[90%] mb-4">Inquiry for <span className='text-primary '>{productName} </span> </h2>
+                <h2 className="text-2xl font-semibold text-gray-800 w-[90%] mb-4">
+                    New Inquiry for <span className='text-primary'>{productName}</span> | <span className='text-xl'>{formatDate()}</span>
+                </h2>
                 <form onSubmit={handleSubmit}>
                     <div className="flex gap-1 md:gap-4">
                         <div className="mb-2 w-full">
@@ -132,17 +143,7 @@ function InquiryForm({ productName, onClose }) {
                             required
                         />
                     </div>
-                    <div className="mb-2">
-                        <label className="block text-gray-700 font-medium mb-2">Subject</label>
-                        <input
-                            type="text"
-                            value={subject}
-                            placeholder='Enter your subject'
-                            onChange={(e) => setSubject(e.target.value)}
-                            className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:border-blue-500"
-                            required
-                        />
-                    </div>
+                    
                     <div className="mb-2">
                         <label className="block text-gray-700 font-medium mb-2">Message</label>
                         <textarea
@@ -161,16 +162,15 @@ function InquiryForm({ productName, onClose }) {
                         />
                     </div>
                     {errorMessage && <p className="text-primary mb-4">{errorMessage}</p>}
-                    <div className="flex justify-end">
+                    <div className="flex justify-center">
                         <button
                             type="submit"
-                            className={`bg-gray-800 text-white py-2 px-6 w-full rounded-lg hover:bg-gray-900 transition-all duration-200 ${(!captchaValue || isSubmitting) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            className={`bg-gray-800 text-white py-2 px-6 w-full md:w-1/2 mt-5 rounded-lg hover:bg-gray-900 transition-all duration-200 ${(!captchaValue || isSubmitting) ? 'opacity-50 cursor-not-allowed' : ''}`}
                             disabled={!captchaValue || isSubmitting}
                         >
                             {isSubmitting ? 'Submitting...' : 'Submit'}
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>

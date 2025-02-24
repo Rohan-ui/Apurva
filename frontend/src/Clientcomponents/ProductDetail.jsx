@@ -102,12 +102,7 @@ function ProductDetail() {
               </div>
               <div className="space-x-5 md:space-y-2">
                 <MSDSSection msds={productData.msds} name ={productData.title} spec={productData.spec} />
-                {/* <button
-                  onClick={() => setShowInquiryForm(true)}
-                  className="bg-primary px-2 py-1 md:px-10 mt-3 md:py-2 float-right  rounded hover:border-b-4 border-b-primary hover:text-black hover:bg-white hover:shadow-lg text-white font-bold shadow-lg shadow-gray-200"
-                >
-                  INQUIRY NOW
-                </button> */}
+              
               </div>
             </div>
           )}
