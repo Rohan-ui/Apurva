@@ -86,47 +86,7 @@ function SingleBlog() {
         autoplaySpeed: 2500,
     };
 
-    // const posts = [
-    //     {
-    //         id: 1,
-    //         date: '10th Sept, 2020',
-    //         title: "Don't Underestimate Tree for Medicine",
-    //         category: 'Commercial',
-    //         image: mission1 
-    //     },
-    //     {
-    //         id: 2,
-    //         date: '15th Sept, 2020',
-    //         title: "Equipping Researchers in the Developing World",
-    //         category: 'Education',
-    //         image: mission2
-    //     },
-    //     {
-    //         id: 3,
-    //         date: '20th Sept, 2020',
-    //         title: "Role of Genetics in treating Heigh-grade glioma",
-    //         category: 'Review',
-    //         image: mission1
-    //     },
-    // ];
-
-    // const tags = ["COVID-19", "GENE", "TEST", "LAB", "DATA", "VIRUS", "PANDEMIC", "SYMPTOMS", "MEDICINE","BACTERIA"];
-
-    // const comments = [
-    //     {
-    //         name: "Isaac Herman",
-    //         date: "June 14, 2020 [11.45AM]",
-    //         comment: "How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.",
-    //         profileImg: profile1// Dummy profile image URL
-    //     },
-    //     {
-    //         name: "William Cobus",
-    //         date: "June 14, 2020 [11.20AM]",
-    //         comment: "Undertakes laborious physical exercise, except to obtain some advantage from it but who has any right to find fault.",
-    //         profileImg: profile2
-    //     }
-    // ];
-
+    
     return (
        <>
         <div
@@ -135,13 +95,13 @@ function SingleBlog() {
     // title={formattedCategory}
     >
         <div className='flex flex-col justify-center items-center h-[40vh] md:h-[30vh] mb-10'>
-            <h1 className='font-bold text-white sm:text-2xl md:text-3xl text-xl z-10  text-center uppercase'>
+            <h1 className='font-bold text-white sm:text-2xl md:text-3xl text-xl z-10  text-center '>
                 {blogData.title}
             </h1>
             <div className="absolute bottom-4 flex space-x-2 z-10">
-                <Link to="/blog" className="text-white hover:text-gray-300 uppercase">Blog</Link>
+                <Link to="/blogs" className="text-white hover:text-gray-300 ">Blog</Link>
                 <span className="text-white">/</span>
-                <p className="text-white hover:text-gray-300  cursor-pointer uppercase">{blogData.title}</p>
+                <p className="text-white hover:text-gray-300  cursor-pointer ">{blogData.title}</p>
             </div>
             <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
         </div>

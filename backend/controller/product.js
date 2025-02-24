@@ -53,7 +53,7 @@ const insertProduct = async (req, res) => {
       product
     });
   } catch (error) {
-    console.error('Error inserting product:', error);
+    console.log('Error inserting product:', error);
     res.status(500).json({ 
       message: 'Error inserting product',
       error: error.message 

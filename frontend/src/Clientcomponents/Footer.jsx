@@ -3,6 +3,7 @@ import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { FaXTwitter } from "react-icons/fa6";
 import axios from 'axios'
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
 
@@ -84,58 +85,56 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li><Link to='/about-us' href="#" className="hover:text-primary">About us</Link></li>
                             <li><Link to="/blogs" className="hover:text-blue-500">Blogs</Link></li>
-                            
+
                             <li><Link to="/contact-us" className="hover:text-primary">Contact us</Link></li>
-                        
+
                             {/* <li><Link to="/services" className="hover:text-blue-500">Services</Link></li> */}
                         </ul>
-
-                        <h5 className="text-lg font-bold mb-4 mt-5">Opening Hours</h5>
-                        <ul className="space-y-2">
-                            <li>{openingHours}</li>
-                        </ul>
                     </div>
-                    {/* <div>
-                        <h5 className="text-lg font-bold mb-4">Feel Free to Contact Us</h5>
-                        <p className="text-2xl xl:text-4xl font-bold text-blue-900">61 383 766 284</p>
-                        <p>noreply@envato.com</p>
 
-                        <div className="mt-20">
-                            <h5 className="text-lg font-bold mb-4">Career</h5>
-                            <p className="w-2/3">Nam eget dui vel quam sodales semper quis porttitor
-                                tortor. Vivamus quis ex nulla ...Nam eget dui vel quam
-                                sodales semper quis porttitor tortor.</p>
-                        </div>
-                    </div> */}
                     {/* Contact Info */}
                     <div>
                         <h5 className="text-lg font-bold mb-4">Contact Info</h5>
-                        <ul className="space-y-2">
-                            <li><a href={addresslink} target='_blank' className="hover:text-primary ">{address}</a></li>
-                            <li>
-                                <a href={`tel:${phoneNo}`} className="hover:text-primary ">
-                                    {phoneNo}
-                                </a>
-                            </li>
-                            <li>
-                                <a href={`mailto:${email}`} className="hover:text-primary">
-                                    {email}
-                                </a>
-                            </li>
-                            <li>
-                                <a href={`mailto:${email2}`} className="hover:text-primary">
-                                    {email2}
-                                </a>
-                            </li>
-                        </ul>
+                        <div>
+                            <h5 className="text-lg font-bold mb-4">Contact Info</h5>
+                            <ul className="space-y-2">
+                                <li>
+                                    <a href={addresslink} target='_blank' className="hover:text-primary flex items-center">
+                                        <FaMapMarkerAlt className="mr-2 h-6 w-6 " />
+                                        {address}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href={`tel:${phoneNo}`} className="hover:text-primary flex items-center">
+                                        <FaPhoneAlt className="mr-2" />
+                                        {phoneNo}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href={`mailto:${email}`} className="hover:text-primary flex items-center">
+                                        <FaEnvelope className="mr-2" />
+                                        {email}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href={`mailto:${email2}`} className="hover:text-primary flex items-center">
+                                        <FaEnvelope className="mr-2" />
+                                        {email2}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div>
                         <h5 className="text-lg font-bold mb-4">Location</h5>
                         <iframe src={location} className='border-0 space-y-2 h-[90%] w-full rounded-md' allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                <div className='flex justify-between items-center space-x-4  float-end max-w-5xl text-gray-500  mt-9 text-sm space-y-2'>
+                 <Link to="/privacy-policy">   <p className='mt-2 hover:text-gray-700 cursor-pointer'>Privacy Policy</p></Link>
+                
+                <Link to="/terms-and-conditions"> <p className=' hover:text-gray-700 cursor-pointer'>Terms & Conditions</p></Link>
+                </div>
                     </div>
                 </div>
-
-                {/* Social Media Links */}
                 <div className="flex justify-end space-x-4 mt-8 pr-5">
                     <a href={facebooklink} target='_blank' className="text-gray-600 hover:text-primary"><FaFacebookF /></a>
                     <a href={twitterlink} target='_blank' className="text-gray-600 hover:text-primary"><FaXTwitter /></a>
@@ -143,18 +142,12 @@ const Footer = () => {
                     <a href={youtubelink} target='_blank' className="text-gray-600 hover:text-primary"><FaYoutube /></a>
                 </div>
 
-                {/* Copyright and Links */}
-                {/* <div className="text-center md:mt-8 mt-16 lg:flex justify-between items-center border-t-2"> */}
-                
-                        <p className="text-gray-500 font-semibold mt-8 text-center">Copyright {currentYear} © Apurva Chemicals Pvt. Ltd. All Rights Reserved. Design & Developed by <span className='text-primary font-bold '><a href="https://rndtechnosoft.com/" target='_blank'>RnD Technosoft</a></span></p>
-                    
-                    {/* <div className="flex md:flex-row flex-col justify-center space-x-4 mt-2">
-                        <a href="#" className="text-gray-500 hover:text-red-500">Terms and conditions</a>
-                        <a href="#" className="text-gray-500 hover:text-red-500">Privacy policy</a>
-                        <a href="#" className="text-gray-500 hover:text-red-500">Pricing</a>
-                    </div> */}
-                {/* </div> */}
+                {/* Social Media Links */}
+               
+
+
             </div>
+                <p className="text-gray-500 font-semibold mt-8 text-center pt-10">Copyright {currentYear} © Apurva Chemicals Pvt. Ltd. All Rights Reserved. Designed & Developed by  <span className='text-primary font-bold '><a href="https://rndtechnosoft.com/" target='_blank'>RnD Technosoft</a></span></p>
         </footer>
     );
 };
