@@ -10,7 +10,7 @@ import IndustrySection from '../Clientcomponents/component/carousel'
 // import ProductCategory from '../Clientcomponents/ProductCategory'
 function HomePage() {
   return (
-    <>
+    <> 
 
       <Carousol />
       <Video />
