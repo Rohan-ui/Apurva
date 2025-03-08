@@ -90,10 +90,13 @@ import Industry from './AdminComponents/industry/IndustryTable';
 import CreateIndustry from './AdminComponents/industry/IndustryForm';
 import TermsAndConditions from './Clientpages/TermsAndCondition';
 import PrivacyPolicy from './Clientpages/PrivacyPolicy';
+import MetaList from './AdminComponents/Pages/metaInfo/MetaInfoTable';
+import StaticMetaForm from './AdminComponents/Pages/metaInfo/StaticMetaInfoForm';
+import useDocumentTitle from './AdminComponents/Pages/metaInfo/DynamicData';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  useDocumentTitle(); 
   useEffect(() => {
     const token = Cookies.get('jwt');
     if (token) {
@@ -233,10 +236,17 @@ useEffect(() => {
             <Route path="/ourpeople" element={<OurPeople />} />
             <Route path="/packagingdetail" element={<PackagingDetail />} />
           
-          //industry section
+          {/* //industry section */}
           <Route path="/industry" element={<Industry />} />
           <Route path="/industry-form" element={<CreateIndustry />} />
           <Route path="/industry-form/:id" element={<CreateIndustry />} />
+
+            
+          {/* Static meta path  */}
+          <Route path="/meta-info" element={< MetaList />} />
+          <Route path="/meta-form" element={< StaticMetaForm />} />
+          <Route path="/edit-meta-form/:id" element={< StaticMetaForm />} />
+          
           </Route>
         )}
       </Routes>

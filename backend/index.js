@@ -13,7 +13,13 @@ const app = express();
 app.use(express.json());
  
 app.use(cookieParser());
- 
+app.use(express.static(path.join(__dirname, "dist"), {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.xml')) {
+            res.setHeader('Content-Type', 'application/xml');
+        }
+    }
+}));
 
 cron.schedule('59 23 31 * *', () => {
 
@@ -66,6 +72,7 @@ app.use('/api/packagingdetail', require('./routes/packagingdetail'));
 app.use('/api/packagingtype', require('./routes/packagingtype'));
 app.use('/api/dynamicSlug', require('./routes/dynamicSlug'));
 app.use('/api/industry', require('./routes/industry'));
+app.use("/api/staticMeta",require("./routes/staticMeta"))
 
 app.use(express.static(path.join(__dirname, 'dist')));
 

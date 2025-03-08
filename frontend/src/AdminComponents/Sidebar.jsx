@@ -91,7 +91,7 @@ export default function Sidebar() {
     {
       title: "SEO", icon: <TbSeo size={20} />, submenu: [
         { title: "Sitemap Generator", icon: <FaSitemap size={20} />, path: "/sitemap" },
-        { title: "Meta Tags Settings", icon: <FaCode size={20} />, path: "/metadetails" },
+        { title: "Meta Info", icon: <FaCode size={20} />, path: "/meta-info" },
         { title: "Google Tag Manager", icon: <FaGoogle size={20} />, path: "/googleSettings" },
       ]
     },
