@@ -6,8 +6,6 @@ import axios from 'axios'
 import Modal from 'react-modal';
 import { FaTimes } from "react-icons/fa";
 
-
-
 function Contactus() {
 
     const [phoneNo, setPhoneNo] = useState("");
@@ -175,11 +173,6 @@ function Contactus() {
                             onChange={(e) => setPhone(e.target.value)}
                             required
                         />
-                        {/* <input
-                            type="text"
-                            placeholder="Enter your website"
-                            className="w-full p-4 border border-gray-100 rounded shadow-xl [box-shadow:0px_16px_24px_rgba(189,_196,_205,_0.13)] hover:border-se focus:outline-none"
-                        /> */}
                     </div>
                     <textarea
                         placeholder="Type your message"

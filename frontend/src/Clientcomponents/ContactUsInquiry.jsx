@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
 import { useNavigate } from 'react-router-dom';
 
 

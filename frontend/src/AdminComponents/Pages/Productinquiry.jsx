@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import { FaTrashAlt, FaArrowUp, FaArrowDown } from "react-icons/fa";
+;
 import axios from 'axios';
 import UseAnimations from "react-useanimations";
 import loading from "react-useanimations/lib/loading";

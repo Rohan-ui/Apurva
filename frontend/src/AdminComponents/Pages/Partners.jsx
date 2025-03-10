@@ -1,14 +1,13 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import { FaEdit, FaTrashAlt, FaCheck, FaTimes, FaArrowUp, FaArrowDown, FaPlus } from "react-icons/fa";
+
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UseAnimations from "react-useanimations";
 import loading from "react-useanimations/lib/loading";
-
-
 const PartnersTable = () => {
   const [heading, setHeading] = useState("");
   const [subheading, setSubheading] = useState("");
@@ -19,8 +18,6 @@ const PartnersTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate()
   const pageSize = 5; // Define the number of items per page
-
- 
 
   const notify = () => {
     toast.success("Updated Successfully!");
@@ -109,9 +106,6 @@ const PartnersTable = () => {
   const deletePartner = async (id) => {
     try {
       const response = await axios.delete(`/api/partner/deletePartner?id=${id}`, { withCredentials: true });
-
-      // Optionally, you can update the UI or perform any other actions after successful deletion
-      // For example, refetch the data to update the table
       fetchData(pageIndex);
     } catch (error) {
       console.error(error);

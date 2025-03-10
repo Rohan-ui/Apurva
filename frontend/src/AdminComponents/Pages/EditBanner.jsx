@@ -6,14 +6,6 @@ import 'react-quill/dist/quill.snow.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const sections = [
-//   { value: "Home", label: "Home" },
-//   { value: "About", label: "About" },
-//   { value: "Services", label: "Services" },
-//   { value: "Contact", label: "Contact" },
-//   { value: "Products", label: "Products" },
-// ];
-
 const modules = {
   toolbar: [
     [{ 'font': [] }],
@@ -32,7 +24,6 @@ const modules = {
     matchVisual: false,
   }
 };
-
 
 const EditBanner = () => {
   const { id: bannerId } = useParams();
@@ -86,7 +77,7 @@ const EditBanner = () => {
         setPriority(bannerData.priority);
       } catch (error) {
         console.error('Error fetching banner:', error);
-        // Handle error (e.g., redirect to an error page or show a message)
+      
       }
     };
 

@@ -1,6 +1,7 @@
 // src/components/ColorPicker.js
 import React, { useContext } from 'react';
-import { FaPalette } from 'react-icons/fa';
+import { FaPalette } from "@react-icons/all-files/fa/FaPalette";
+
 import { ColorContext } from '../ColorContext';
 
 const ColorPicker = () => {

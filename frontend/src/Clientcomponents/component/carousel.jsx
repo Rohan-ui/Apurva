@@ -7,14 +7,17 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function IndustrySectors() {
   const [sectors, setSectors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSectors = async () => {
       try {
         const response = await axios.get("/api/industry/all");
-        setSectors(response.data); // Assuming response.data is the array you shared
+        setSectors(response.data); // Assuming response.data is an array
       } catch (error) {
         console.error("Error fetching industry sectors:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchSectors();
@@ -31,15 +34,15 @@ export default function IndustrySectors() {
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
       { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } }
-    ]
+      { breakpoint: 480, settings: { slidesToShow: 1 } },
+    ],
   };
 
   function SampleNextArrow(props) {
     const { onClick } = props;
     return (
       <div
-        className="flex absolute pl-1 md:-right-10 top-[43%] transform -translate-y-1/2 z-10 pt-2 cursor-pointer text-red-700  h-8 w-8 justify-center items-center transition-transform duration-300 hover:scale-110"
+        className="flex absolute pl-1 md:-right-10 top-[43%] transform -translate-y-1/2 z-10 pt-2 cursor-pointer text-red-700 h-8 w-8 justify-center items-center transition-transform duration-300 hover:scale-110"
         onClick={onClick}
       >
         <IoIosArrowForward size={25} />
@@ -51,7 +54,7 @@ export default function IndustrySectors() {
     const { onClick } = props;
     return (
       <div
-        className="flex absolute -left-2 md:-left-10 top-[43%] transform -translate-y-1/2 z-10 pt-2 cursor-pointer text-red-700  h-8 w-8 justify-center items-center transition-transform duration-300 hover:scale-110"
+        className="flex absolute -left-2 md:-left-10 top-[43%] transform -translate-y-1/2 z-10 pt-2 cursor-pointer text-red-700 h-8 w-8 justify-center items-center transition-transform duration-300 hover:scale-110"
         onClick={onClick}
       >
         <IoIosArrowBack size={25} />
@@ -63,36 +66,56 @@ export default function IndustrySectors() {
     <div className="py-12 px-4 mb-10 md:px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-semibold text-red-800 mb-2">APURVA CHEMICALS PVT LTD.</h2>
-          <h3 className="text-4xl font-bold text-gray-600 mb-4">Industry Sectors</h3>
+          <h2 className="text-2xl font-semibold text-red-800 mb-2">
+            APURVA CHEMICALS PVT LTD.
+          </h2>
+          <h3 className="text-4xl font-bold text-gray-600 mb-4">
+            Industry Sectors
+          </h3>
         </div>
 
-        <Slider {...settings}>
-          {sectors.map((sector) => (
-            <div key={sector._id} className="px-2">
-              <div className="border-none transition-transform duration-300 transform hover:scale-90 hover:shadow-xl rounded-lg">
-                <div className="relative">
-                  <img
-                    src={`/api/image/download/${sector.image}`} // Adjust path if needed
-                    alt={sector.title}
-                    className="w-full h-[300px] object-cover rounded-t-lg"
-                  />
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:rotate-12 hover:scale-110">
+        {loading ? (
+          // Skeleton Loader: Display while loading
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div
+                key={index}
+                className="animate-pulse bg-gray-200 rounded-lg h-[300px]"
+              />
+            ))}
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {sectors.map((sector) => (
+              <div key={sector._id} className="px-2">
+                <div className="border-none transition-transform duration-300 transform hover:scale-90 hover:shadow-xl rounded-lg">
+                  <div className="relative">
                     <img
-                      src={`/api/image/download/${sector.icon}`} // Adjust path if needed
-                      alt="icon"
-                      className="w-10 h-10"
+                      src={`/api/image/download/${sector.image}`} // Adjust path if needed
+                      alt={sector.title}
+                      className="w-full h-[300px] object-cover rounded-t-lg"
+                      loading="lazy" // Lazy loading added
                     />
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:rotate-12 hover:scale-110">
+                      <img
+                        src={`/api/image/download/${sector.icon}`} // Adjust path if needed
+                        alt="icon"
+                        className="w-10 h-10"
+                        loading="lazy" // Lazy loading added
+                      />
+                    </div>
                   </div>
+                  <div className="text-center pt-12 pb-6">
+                    <h3 className="text-xl font-semibold text-gray-800">
+                      {sector.title}
+                    </h3>
+                  </div>
+                  <div className="h-1 bg-red-800 w-full rounded-b-lg" />
                 </div>
-                <div className="text-center pt-12 pb-6">
-                  <h3 className="text-xl font-semibold text-gray-800">{sector.title}</h3>
-                </div>
-                <div className="h-1 bg-red-800 w-full rounded-b-lg" />
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );

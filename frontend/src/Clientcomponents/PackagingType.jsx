@@ -13,8 +13,6 @@ const packagingData = [
     { image: JumboBag, title: "Jumbo Bag" },
 ];
 
-
-
 function PackagingType() {
     const [description, setDescription] = useState("");
     const [heading, setHeading] = useState("");

@@ -1,6 +1,10 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
-import { FaEdit, FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { FaEdit } from "@react-icons/all-files/fa/FaEdit";
+import { FaArrowUp } from "@react-icons/all-files/fa/FaArrowUp";
+import { FaArrowDown } from "@react-icons/all-files/fa/FaArrowDown";
+
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import UseAnimations from "react-useanimations";

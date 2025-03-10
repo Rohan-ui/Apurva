@@ -3,10 +3,6 @@ import Slider from 'react-slick';
 import { FaFacebookF, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 import axios from 'axios'
-// import team1 from '../assets/team1.png';
-// import team2 from '../assets/team2.png';
-// import team3 from '../assets/team3.png';
-// import team4 from '../assets/team4.png';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
@@ -47,15 +43,6 @@ const TeamSlide = () => {
         fetchHeadings();
     }, []);
 
-    // const teamMembers = [
-    //     { name: 'John Doe', position: 'MEDICAL DOCTOR', image: team1 },
-    //     { name: 'Jane Smith', position: 'GENETIC SPECALIST', image: team2 },
-    //     { name: 'Emily Johnson', position: 'MICROBIOLOGY EXPERT', image: team3 },
-    //     { name: 'Mike Davis', position: 'SURGEON', image: team4 }
-    // ];
-
-   
-
     return (
         <div className="w-full mx-auto py-10 px-4 sm:px-6 lg:px-8 bg-cover bg-center">
             <div className='flex flex-col justify-center items-center text-center'>
@@ -82,8 +69,6 @@ const TeamSlide = () => {
                                    <Link  to={member.twitter}> <FaXTwitter className='hover:text-sky-500 duration-100' /></Link>
                                     <hr className='h-5 border border-gray-300' />
                                   <Link  to={member.linkdin}>  <FaLinkedinIn className='hover:text-blue-600 duration-100' /></Link>
-                                    {/* <hr className='h-5 border border-gray-300' />
-                                    <FaYoutube className='hover:text-red-500 duration-100' /> */}
                                 </div>
                             </div>
                         </div>

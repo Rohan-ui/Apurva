@@ -60,8 +60,6 @@ const SlugPage = () => {
       return <ProductCategoryGrid slugs={slug} />;
     case 'news':
       return <SingleBlogPage slugs={slug} />;
-    // case 'newsCategory':
-    //   return <BlogPage categoryslug={slug} />;
     default:
       return <div>Unknown slug type</div>;
   }

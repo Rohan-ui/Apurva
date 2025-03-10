@@ -1,54 +1,11 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import { FaEdit, FaArrowUp, FaArrowDown, FaPlus } from "react-icons/fa";
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import UseAnimations from "react-useanimations";
 import loading from "react-useanimations/lib/loading";
-
-
-
-// const flattenData = (sitemaps, data, type) => {
-//   const flattened = [];
-//   let sequentialId = sitemaps.length + 2;
-//   data.forEach((item) => {
-//     flattened.push({
-//       id: sequentialId++,
-//       _id: item._id,
-//       url: item.url,
-//       priority: item.priority,
-//       changeFreq: item.changeFreq,
-//       lastmod: item.lastmod,
-//       type: type
-//     });
-
-//     item.subCategories.forEach((sub) => {
-//       flattened.push({
-//         id: sequentialId++,
-//         _id: sub._id,
-//         url: sub.url,
-//         priority: sub.priority,
-//         changeFreq: sub.changeFreq,
-//         lastmod: sub.lastmod,
-//         type: type
-//       });
-
-//       sub.subSubCategory.forEach((subSub) => {
-//         flattened.push({
-//           id: sequentialId++,
-//           _id: subSub._id,
-//           url: subSub.url,
-//           priority: subSub.priority,
-//           changeFreq: subSub.changeFreq,
-//           lastmod: subSub.lastmod,
-//           type: type
-//         });
-//       });
-//     });
-//   });
-
-//   return flattened;
-// };
 
 const SitemapTable = () => {
   const [mainSitemaps, setMainSitemaps] = useState([]);
