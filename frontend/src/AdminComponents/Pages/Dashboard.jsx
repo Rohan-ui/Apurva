@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Chart from 'react-apexcharts';
 import { useNavigate } from 'react-router-dom';
-import { FaServicestack, FaHandshake, FaShoppingCart } from "react-icons/fa";
-import { GiVerticalBanner } from "react-icons/gi";
-import { FaNewspaper, FaPager, FaPeopleGroup } from "react-icons/fa6";
-import { RiQuestionAnswerFill } from "react-icons/ri";
+import { lazy } from "react";
+
+const FaShoppingCart = lazy(() => import("react-icons/fa").then((module) => ({ default: module.FaShoppingCart })));
+const GiVerticalBanner = lazy(() => import("react-icons/gi").then((module) => ({ default: module.GiVerticalBanner })));
+const FaNewspaper = lazy(() => import("react-icons/fa6").then((module) => ({ default: module.FaNewspaper })));
+const FaPeopleGroup = lazy(() => import("react-icons/fa6").then((module) => ({ default: module.FaPeopleGroup })));
+
 
 const AdminDashboard = () => {
     const [countProducts, setCountProducts] = useState(0);
@@ -15,15 +18,9 @@ const AdminDashboard = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [countWithFields, setCountWithFields] = useState(0);
     const [countWithoutFields, setCountWithoutFields] = useState(0);
-    // const [dataWithFields, setDataWithFields] = useState([]);
-    // const [dataWithoutFields, setDataWithoutFields] = useState([]);
-    // const [inquiries, setInquiries] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-
-
     useEffect(() => {
-       
 
         axios.get('/api/product/countProduct', { withCredentials: true }).then(response => {
             setCountProducts(response.data.total);
@@ -64,9 +61,7 @@ const AdminDashboard = () => {
             setTotalCount(totalCount);
             setCountWithFields(countWithFields);
             setCountWithoutFields(countWithoutFields);
-            // setDataWithFields(dataWithFields);
-            // setDataWithoutFields(dataWithoutFields);
-            // setInquiries(inquiries);
+           
         } catch (error) {
             console.error(error);
         } finally {
@@ -162,7 +157,9 @@ const AdminDashboard = () => {
                             <h3 className="text-4xl font-bold mb-2">{countProducts}</h3>
                             <p className='font-semibold'>Products</p>
                         </div>
+                        <Suspense fallback={<div>Loading Icons...</div>}>
                         <FaShoppingCart size={60} />
+                        </Suspense>
                     </div>
 
                   
@@ -173,7 +170,9 @@ const AdminDashboard = () => {
                             <h3 className="text-4xl font-bold mb-2">{countNews}</h3>
                             <p className='font-semibold'>Blogs</p>
                         </div>
+                        <Suspense fallback={<div>Loading Icons...</div>}>
                         <FaNewspaper size={60} />
+                        </Suspense>
                     </div>
                     {/* Box 6 */}
                     <div className="bg-orange-500 border border-gray-300 rounded p-4 text-white flex justify-around" onClick={() => navigate("/banner")}>
@@ -182,7 +181,10 @@ const AdminDashboard = () => {
                             <h3 className="text-4xl font-bold mb-2">{countBanners}</h3>
                             <p className='font-semibold'>Banners</p>
                         </div>
+                        <Suspense fallback={<div>Loading Icons...</div>}>
                         <GiVerticalBanner size={60} />
+                        </Suspense>
+                      
                     </div>
 
                     {/* Box 7 */}
@@ -192,7 +194,10 @@ const AdminDashboard = () => {
                             <h3 className="text-4xl font-bold mb-2">{countStaff}</h3>
                             <p className='font-semibold'>Our Team</p>
                         </div>
+                        <Suspense fallback={<div>Loading Icons...</div>}>
                         <FaPeopleGroup size={60} />
+                        </Suspense>
+                       
 
                     </div>
                 </div>

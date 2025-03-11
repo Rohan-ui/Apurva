@@ -108,9 +108,6 @@ function BlogPage() {
             value={searchQuery}
             onChange={handleSearchInputChange}
           />
-          {/* <button className="flex-shrink-0 text-white bg-gray-900 hover:text-white hover:bg-red-500 p-4 ">
-            <FiSearch size={20} />
-          </button> */}
         </div>
       </div>
 

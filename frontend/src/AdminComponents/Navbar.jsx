@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaUserCircle } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoIosLock } from "react-icons/io";
-import { IoLogOut } from "react-icons/io5";
+import { FaUserCircle } from "@react-icons/all-files/fa/FaUserCircle";
+import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
+import { IoIosLock } from "@react-icons/all-files/io/IoIosLock";
+import { IoLogOut } from "@react-icons/all-files/io5/IoLogOut";
+
+
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import axios from 'axios';

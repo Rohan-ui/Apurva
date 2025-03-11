@@ -25,17 +25,6 @@ const modules = {
   }
 };
 
-
-// const sections = [
-//   { value: "Home", label: "Home" },
-//   { value: "About", label: "About" },
-//   { value: "Services", label: "Services" },
-//   { value: "Contact", label: "Contact" },
-//   { value: "Products", label: "Products" },
-// ];
-
-
-
 const NewBannerForm = () => {
   const [section, setSection] = useState("Home");
   const [title, setTitle] = useState("");

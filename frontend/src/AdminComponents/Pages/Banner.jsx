@@ -1,6 +1,15 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
-import { FaEdit, FaTrashAlt, FaCheck, FaTimes, FaArrowUp, FaArrowDown, FaPlus, FaEye } from "react-icons/fa";
+import { FaEdit } from "@react-icons/all-files/fa/FaEdit";
+import { FaTrashAlt } from "@react-icons/all-files/fa/FaTrashAlt";
+import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
+import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
+import { FaArrowUp } from "@react-icons/all-files/fa/FaArrowUp";
+import { FaArrowDown } from "@react-icons/all-files/fa/FaArrowDown";
+import { FaPlus } from "@react-icons/all-files/fa/FaPlus";
+import { FaEye } from "@react-icons/all-files/fa/FaEye";
+
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from "react-toastify";

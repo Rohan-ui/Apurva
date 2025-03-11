@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import axios from 'axios';
-import { FaEdit, FaTrashAlt, FaDownload, FaCheck, FaEye, FaTimes, FaArrowUp, FaArrowDown, FaPlus, FaFileImport, FaFileExport } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaArrowUp, FaArrowDown, FaPlus } from "react-icons/fa";
+
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from 'react-router-dom';

@@ -3,17 +3,17 @@ import { useLocation, Link, Outlet } from 'react-router-dom';
 
 import { BiSolidDashboard, BiCategory } from "react-icons/bi";
 import { FaSitemap, FaHome, FaPhone, FaShoppingCart, FaDatabase, FaCode, FaGoogle, FaListOl, FaHandshake } from "react-icons/fa";
-import { GiVerticalBanner, GiAchievement, GiThreeLeaves } from "react-icons/gi";
-import { BsFillPersonLinesFill, BsBarChartSteps } from "react-icons/bs";
+import { GiVerticalBanner, GiThreeLeaves } from "react-icons/gi";
+import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaNewspaper, FaPager, FaPeopleGroup, FaOpencart } from "react-icons/fa6";
-import { RiPagesFill, RiWhatsappFill } from "react-icons/ri";
+import { RiPagesFill } from "react-icons/ri";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { PiPhoneCallFill } from "react-icons/pi";
+import { PiNewspaperClippingBold } from "react-icons/pi";
 import { GoNumber, GoGoal } from "react-icons/go";
-import { PiNewspaperClippingBold } from "react-icons/pi"
 import { AiOutlineVerticalAlignBottom, AiOutlineVerticalAlignTop } from "react-icons/ai";
 import { TbSeo } from "react-icons/tb";
 import { IoSettings } from "react-icons/io5";
+
 
 import axios from 'axios';
 import Navbar from './Navbar';
@@ -46,7 +46,6 @@ export default function Sidebar() {
     {
       title: "Home", icon: <FaHome size={20} />, submenu: [
         { title: "Banner", icon: <GiVerticalBanner size={20} />, path: "/banner" },
-        { title: "Counter", icon: <GoNumber size={20} />, path: "/counter" },
         { title: "Why Choose US", icon: <GoNumber size={20} />, path: "/whyChooseUs" },
         { title: "Newsletter", icon: <FaNewspaper size={20} />, path: "/newsletter" },
       ]
