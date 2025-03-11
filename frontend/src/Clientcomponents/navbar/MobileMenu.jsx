@@ -36,12 +36,12 @@ function MobileMenu({
 
     return (
         <div className='flex items-center justify-between px-4 py-1 lg:px-6 lg:py-4 w-full lg:hidden'>
-            <Link to="/" className='flex items-center'>
+            <Link to="/" className='flex items-center w-fit'>
                 <img 
                     src={`/api/logo/download/${colorlogo.photo}`} 
                     alt={colorlogo.alt} 
                     title={colorlogo.imgTitle} 
-                    className='lg:w-1/2 w-[50%] lg:h-[70%]'
+                    className='lg:w-1/2  h-16 lg:h-[50%]'
                 />
             </Link>
             

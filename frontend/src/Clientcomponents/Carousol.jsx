@@ -221,13 +221,10 @@ function Carousel() {
             >
               {/* Image section with aspect ratio container */}
               <div className="lg:w-1/2 flex justify-center items-center mt-8 md:mt-0">
-                <div className="flex items-center md:gap-10 lg:gap-0 justify-center lg:relative">
+                <div className="flex items-center md:pt-5 md:gap-10 lg:gap-0 justify-center lg:relative">
                   {/* Main image with aspect ratio */}
-                  <div className="w-[70%] md:w-1/2 lg:w-[450px] xl:w-[500px] relative" 
-                       style={{
-                         aspectRatio: "1/1.2", 
-                         height: "auto"
-                       }}>
+                  <div className="w-[70%] md:w-1/3 lg:w-[450px] xl:w-[500px] relative" 
+                      >
                     <img
                       ref={el => (imgRefs.current[index] = el)}
                       className="w-full h-full object-contain"
@@ -260,7 +257,7 @@ function Carousel() {
                   className="space-y-4 py-5 pt-4 lg:pl-10" 
                   ref={el => (textRefs.current[index] = el)}
                 >
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-[57px] xl:pr-20 xl:w-full font-daysOne text-gray-800 text-center md:text-left">
+                  <h2 className="text-3xl sm:text-4xl md:text-4xl xl:text-[57px] xl:pr-20 xl:w-full font-daysOne text-gray-800 text-center md:text-left">
                     {slide.title}
                   </h2>
                   <div className="font-semibold lg:py-7 xl:w-[80%]">
