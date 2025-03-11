@@ -5,7 +5,7 @@ import img3 from '../assets/contact-03.svg'
 import axios from 'axios'
 import Modal from 'react-modal';
 import { FaTimes } from "react-icons/fa";
-
+ 
 function Contactus() {
 
     const [phoneNo, setPhoneNo] = useState("");

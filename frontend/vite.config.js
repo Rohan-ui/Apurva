@@ -55,11 +55,11 @@ export default defineConfig({
       target: 'es2020', // Modern target for better tree-shaking
     }
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:3023",
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://localhost:3023",
+  //     },
+  //   },
+  // },
 });
