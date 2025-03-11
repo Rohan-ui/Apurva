@@ -124,7 +124,7 @@ function DesktopMenu({ menuItems, handleMenuItemClick, colorlogo, phoneNo, setSh
                             data-src={logoUrl} // Use data-src for lazy loading
                             alt={colorlogo?.alt || 'Company Logo'}
                             title={colorlogo?.imgTitle || 'Company Logo'}
-                            className="w-auto h-[16vh] object-contain"
+                            className="w-auto h-[16vh]  object-contain"
                             width="150"
                             height="80"
                             fetchPriority="high"

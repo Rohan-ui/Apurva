@@ -1,0 +1,1 @@
+import{j as r,P as e}from"./index-bt9ZmOFb.js";import"./react-vendor-DlX68Xd0.js";import"./core-icons-BQlSYmsS.js";import"./extended-icons-Co7qGg66.js";function o(){return r.jsx(r.Fragment,{children:r.jsx(e,{})})}export{o as default};

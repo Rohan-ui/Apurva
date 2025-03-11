@@ -2,18 +2,18 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import compression from "vite-plugin-compression";
-import { splitVendorChunkPlugin } from 'vite';
 
+import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
   plugins: [
     react(),
+    visualizer({ open: true }),
     svgr({
       svgrOptions: {
         icon: true, // This will optimize SVG files for icon usage
         ref: true,
       },
     }),
-    splitVendorChunkPlugin(), // Split vendor chunks automatically
     compression({ algorithm: "brotliCompress" }), // Brotli compression
     compression({ algorithm: "gzip" }), // Also add gzip for broader compatibility
   ],
