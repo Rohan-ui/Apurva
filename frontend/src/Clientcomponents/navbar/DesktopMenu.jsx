@@ -1,21 +1,101 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
 import { IoKeypad } from "@react-icons/all-files/io5/IoKeypad";
 
-
 function DesktopMenu({ menuItems, handleMenuItemClick, colorlogo, phoneNo, setShowInquiryForm, isLoading = false }) {
     const [imageLoaded, setImageLoaded] = useState(false);
-    const logoUrl = `/api/logo/download/${colorlogo?.photo}`;
+    const logoUrl = colorlogo?.photo ? `/api/logo/download/${colorlogo.photo}` : '';
+    const imgRef = useRef(null);
+    const observerRef = useRef(null);
 
     // Preload the logo image
     useEffect(() => {
-        if (colorlogo?.photo) {
-            const preloadImage = new Image();
-            preloadImage.src = logoUrl;
-            preloadImage.onload = () => setTimeout(() => setImageLoaded(true), 100);
+        // Add preload link to document head
+        if (logoUrl) {
+            const linkElement = document.createElement('link');
+            linkElement.rel = 'preload';
+            linkElement.href = logoUrl;
+            linkElement.as = 'image';
+            linkElement.type = 'image/png';
+            linkElement.fetchpriority = 'high';
+            document.head.appendChild(linkElement);
+
+            // Clean up
+            return () => {
+                document.head.removeChild(linkElement);
+            };
         }
-    }, [colorlogo]);
+    }, [logoUrl]);
+
+    // Setup Intersection Observer for lazy loading
+    useEffect(() => {
+        if (!logoUrl) return;
+
+        // Create a new observer
+        observerRef.current = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // When logo enters viewport
+                if (entry.isIntersecting) {
+                    // Load image with high priority
+                    if (imgRef.current) {
+                        imgRef.current.src = logoUrl;
+                        imgRef.current.fetchPriority = 'high';
+                    }
+                    
+                    // Disconnect observer after loading
+                    observerRef.current.disconnect();
+                }
+            });
+        }, {
+            rootMargin: '200px', // Start loading when within 200px of viewport
+            threshold: 0
+        });
+
+        // Observe the image element
+        if (imgRef.current) {
+            observerRef.current.observe(imgRef.current);
+        }
+
+        // Also set up traditional image preloading as backup
+        const preloadImage = new Image();
+        preloadImage.src = logoUrl;
+        preloadImage.onload = () => setImageLoaded(true);
+
+        // Cleanup
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+            }
+        };
+    }, [logoUrl, imgRef]);
+
+    // Create a high-priority fetch request for the logo
+    useEffect(() => {
+        if (logoUrl) {
+            const fetchLogo = async () => {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+                    
+                    // Preload the image with high priority
+                    await fetch(logoUrl, { 
+                        priority: 'high',
+                        signal: controller.signal
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    setImageLoaded(true);
+                } catch (error) {
+                    console.error('Logo preload failed:', error);
+                    // Still attempt to show the image
+                    setImageLoaded(true);
+                }
+            };
+            
+            fetchLogo();
+        }
+    }, [logoUrl]);
 
     // Skeleton Loader for the entire menu
     if (isLoading) {
@@ -38,18 +118,23 @@ function DesktopMenu({ menuItems, handleMenuItemClick, colorlogo, phoneNo, setSh
                     {!imageLoaded && (
                         <div className="w-32 h-16 bg-gray-200 animate-pulse rounded"></div>
                     )}
-                    {colorlogo?.photo && (
-                        <>
-                            <link rel="preload" href={logoUrl} as="image" />
-                            <img
-                                src={logoUrl}
-                                alt={colorlogo.alt || 'Company Logo'}
-                                title={colorlogo.imgTitle || 'Company Logo'}
-                                className={`w-auto h-[16vh] object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'hidden'}`}
-                                loading="lazy"
-                                onLoad={() => setImageLoaded(true)}
-                            />
-                        </>
+                    {logoUrl && (
+                        <img
+                            ref={imgRef}
+                            data-src={logoUrl} // Use data-src for lazy loading
+                            alt={colorlogo?.alt || 'Company Logo'}
+                            title={colorlogo?.imgTitle || 'Company Logo'}
+                            className="w-auto h-[16vh] object-contain"
+                            width="150"
+                            height="80"
+                            fetchPriority="high"
+                            decoding="async"
+                            onLoad={() => setImageLoaded(true)}
+                            onError={() => {
+                                console.error('Logo failed to load');
+                                setImageLoaded(true); // Remove skeleton even if image fails
+                            }}
+                        />
                     )}
                 </Link>
 
