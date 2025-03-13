@@ -11,7 +11,6 @@ const cookieParser = require('cookie-parser');
 const mcache = require('memory-cache');
 
 const app = express();
-
 // Enable compression
 app.use(compression());
 app.use(express.json()); 
