@@ -185,13 +185,13 @@ function Video() {
                             </div>
                         </div>
                         
-                        {location.pathname !== '/aboutus' && (
+                        {location.pathname !== '/about-us' && (
                             <div className='flex justify-center md:justify-start mt-8'>
                                 <div className='bg-gray-400 animate-pulse h-12 w-40 rounded'></div>
                             </div>
                         )}
                         
-                        {location.pathname === '/aboutus' && (
+                        {location.pathname === '/about-us' && (
                             <div className='space-y-3 pt-4'>
                                 <div className='bg-gray-300 animate-pulse h-4 w-full rounded'></div>
                                 <div className='bg-gray-300 animate-pulse h-4 w-full rounded'></div>
@@ -260,7 +260,7 @@ function Video() {
                             <p className='text-3xl sm:text-4xl font-daysOne md:px-0 md:text-[40px] text-gray-800 mt-4 text-center md:text-left '>{pagecontent.subheading}</p>
 
                             {/* Replace ReactQuill with lazy-loaded QuillViewer */}
-                            {location.pathname === '/aboutus' ? (
+                            {location.pathname === '/about-us' ? (
                                 <QuillViewer 
                                     value={pagecontent.shortDescription || ''} 
                                     className="justify-center mt-8" 
@@ -274,14 +274,14 @@ function Video() {
                         </div>
 
                         {/* Replace ReactQuill with lazy-loaded QuillViewer */}
-                        {location.pathname === '/aboutus' && (
+                        {location.pathname === '/about-us' && (
                             <QuillViewer 
                                 value={pagecontent.longDescription || ''} 
                                 className="justify-center text-justify pt-4" 
                             />
                         )}
 
-                        {location.pathname !== '/aboutus' && (
+                        {location.pathname !== '/about-us' && (
                             <div className='flex justify-center md:justify-start'>
                                 <Link to="/aboutus" className='cursor-pointer bg-primary hover:bg-secondary text-white font-semibold p-4 md:px-7 rounded uppercase'>Know More</Link>
                             </div>
