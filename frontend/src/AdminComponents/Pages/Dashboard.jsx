@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import axios from 'axios';
 import Chart from 'react-apexcharts';
 import { useNavigate } from 'react-router-dom';

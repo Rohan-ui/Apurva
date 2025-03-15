@@ -47,7 +47,6 @@ export default function Sidebar() {
       title: "Home", icon: <FaHome size={20} />, submenu: [
         { title: "Banner", icon: <GiVerticalBanner size={20} />, path: "/banner" },
         { title: "Why Choose US", icon: <GoNumber size={20} />, path: "/whyChooseUs" },
-        { title: "Newsletter", icon: <FaNewspaper size={20} />, path: "/newsletter" },
       ]
     },
     {
@@ -76,21 +75,13 @@ export default function Sidebar() {
       ]
     },
     
-    //industry
-    {
-      title: "Industry", icon: <GiThreeLeaves size={20} />, submenu: [
-        { title: "Industry", icon: <GiThreeLeaves size={20} />, path: "/industry"
-       },
-       
-      ]
-    },
 
     { title: "Menu Listing", icon: <FaListOl size={20} />, path: "/menulisting" },
     { title: "Inquiries", icon: <FaPhone size={20} />, path: "/Inquiry" },
     {
       title: "SEO", icon: <TbSeo size={20} />, submenu: [
         { title: "Sitemap Generator", icon: <FaSitemap size={20} />, path: "/sitemap" },
-        { title: "Meta Info", icon: <FaCode size={20} />, path: "/meta-info" },
+        // { title: "Meta Info", icon: <FaCode size={20} />, path: "/meta-info" },
         { title: "Google Tag Manager", icon: <FaGoogle size={20} />, path: "/googleSettings" },
       ]
     },
