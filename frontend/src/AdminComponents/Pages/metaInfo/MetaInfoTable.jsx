@@ -40,16 +40,16 @@ const MetaList = () => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
-      <nav className="mb-4 text-gray-600">
+      {/* <nav className="mb-4 text-gray-600">
         <span className="text-gray-500">Home / </span>
         <span className="font-semibold">Meta Data</span>
-      </nav>
+      </nav> */}
 
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Static Page Meta</h2>
         <button
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          onClick={() => navigate("/meta-form")}
+          onClick={() => navigate("/meta/meta-form")}
         >
           Add Meta
         </button>
@@ -79,7 +79,7 @@ const MetaList = () => {
                   <td className="py-2 px-4 border flex space-x-2">
                     <button
                       className="text-blue-600 hover:underline"
-                      onClick={() => navigate(`/edit-meta-form/${item._id}`)}
+                      onClick={() => navigate(`/meta/edit-meta-form/${item._id}`)}
                     >
                       Edit
                     </button>

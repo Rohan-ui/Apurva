@@ -75,6 +75,9 @@ import SlugPage from './Clientpages/SlugPage';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import UseDocumentTitle from './AdminComponents/Pages/metaInfo/DynamicData';
+import MetaList from './AdminComponents/Pages/metaInfo/MetaInfoTable';
+import StaticMetaForm from './AdminComponents/Pages/metaInfo/StaticMetaInfoForm';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -102,6 +105,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <UseDocumentTitle/> 
       <DynamicMetaTags />
       <Routes>
         {/* Define the main layout route */}
@@ -184,6 +188,11 @@ function App() {
             
             <Route path="/ourpeople" element={<OurPeople />} />
             <Route path="/packagingdetail" element={<PackagingDetail />} />
+
+            {/* //meta info  */}
+            <Route path="/meta" element={<MetaList />} />
+            <Route path="/meta/meta-form" element={<StaticMetaForm />} />``
+            <Route path="/meta/edit-meta-form/:id" element={<StaticMetaForm />} />
 
           </Route>
         )}
