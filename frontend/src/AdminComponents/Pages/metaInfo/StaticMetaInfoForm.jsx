@@ -65,21 +65,21 @@ const StaticMetaForm = () => {
                 alert("Meta data added successfully!");
                 setFormData({ pageName: "", pageSlug: "", metaTitle: "", metaDescription: "", metaKeyword: "" });
             }
-            navigate("/meta-info");
+            navigate("/meta");
         } catch (error) {
             alert("Failed to save meta data.");
         }
     };
 
     return (
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-6">
-            <nav className="mb-4 text-sm text-gray-500">
+        <div className=" mx-auto bg-white shadow-lg rounded-lg p-6 mt-6">
+            {/* <nav className="mb-4 text-sm text-gray-500">
                 <Link to="/dashboard" className="hover:underline">Dashboard</Link> /
-                <Link to="/meta-table" className="hover:underline">Meta List</Link> /
+                <Link to="/meta-info" className="hover:underline">Meta List</Link> /
                 {id ? "Edit Meta" : "Add Meta"}
-            </nav>
+            </nav> */}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4  w-full sm:w-1/2">
                 <div>
                     <label className="block text-gray-700 font-medium">Page Name</label>
                     <select

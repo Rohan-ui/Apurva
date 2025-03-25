@@ -4,6 +4,7 @@ import { VitePWA } from "vite-plugin-pwa";
 import path from "path";
 import viteCompression from "vite-plugin-compression";
 import svgr from "vite-plugin-svgr";
+import { visualizer } from "rollup-plugin-visualizer"; // Added visualizer import
 
 export default defineConfig({
   plugins: [
@@ -37,7 +38,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB
+        maximumFileSizeToCacheInBytes: 20 * 1024 * 1024, // 5MB
         runtimeCaching: [
           {
             urlPattern: /.*\.(?:png|jpg|jpeg|svg|gif|pdf)$/,
@@ -56,6 +57,14 @@ export default defineConfig({
           },
         ],
       },
+    }),
+
+    // Rollup Visualizer
+    visualizer({
+      filename: "dist/stats.html",
+      open: true, // Opens the visualizer report automatically after the build
+      gzipSize: true,
+      brotliSize: true,
     }),
   ],
 

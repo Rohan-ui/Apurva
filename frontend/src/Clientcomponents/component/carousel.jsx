@@ -8,6 +8,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 export default function IndustrySectors() {
   const [sectors, setSectors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const fetchSectors = async () => {
@@ -21,6 +22,14 @@ export default function IndustrySectors() {
       }
     };
     fetchSectors();
+
+    // Track screen width changes
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const settings = {
@@ -29,12 +38,12 @@ export default function IndustrySectors() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: isSmallScreen ? null : <SampleNextArrow />,
+    prevArrow: isSmallScreen ? null : <SamplePrevArrow />,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
+      { breakpoint: 768, settings: { slidesToShow: 2, arrows: false } },
+      { breakpoint: 480, settings: { slidesToShow: 1, arrows: false } },
     ],
   };
 
@@ -75,7 +84,6 @@ export default function IndustrySectors() {
         </div>
 
         {loading ? (
-          // Skeleton Loader: Display while loading
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, index) => (
               <div
@@ -91,17 +99,17 @@ export default function IndustrySectors() {
                 <div className="border-none transition-transform duration-300 transform hover:scale-90 hover:shadow-xl rounded-lg">
                   <div className="relative">
                     <img
-                      src={`/api/image/download/${sector.image}`} // Adjust path if needed
+                      src={`/api/image/download/${sector.image}`}
                       alt={sector.title}
                       className="w-full h-[300px] object-cover rounded-t-lg"
-                      loading="lazy" // Lazy loading added
+                      loading="lazy"
                     />
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:rotate-12 hover:scale-110">
                       <img
-                        src={`/api/image/download/${sector.icon}`} // Adjust path if needed
+                        src={`/api/image/download/${sector.icon}`}
                         alt="icon"
                         className="w-10 h-10"
-                        loading="lazy" // Lazy loading added
+                        loading="lazy"
                       />
                     </div>
                   </div>

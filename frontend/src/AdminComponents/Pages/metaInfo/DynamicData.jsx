@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-const useDocumentTitle = () => {
+const UseDocumentTitle = () => {
     // Check if we're in a Router context first
     let location;
     try {
@@ -99,12 +99,12 @@ const useDocumentTitle = () => {
                             );
                             
                             if (homeMeta) {
-                                setMetaTitle(homeMeta.metaTitle || "Static Page");
+                                setMetaTitle(homeMeta.metaTitle || "Apurva Chemicals");
                                 setMetaDescription(homeMeta.metaDescription || "Default description");
                                 setMetaKeyword(homeMeta.metaKeyword || "default, static, page");
                             } else {
                                 // Last fallback
-                                setMetaTitle("Static Page");
+                                setMetaTitle("Apurva Chemicals");
                                 setMetaDescription("Default meta description for static pages.");
                                 setMetaKeyword("default, static, page");
                             }
@@ -113,7 +113,7 @@ const useDocumentTitle = () => {
                 }
             } catch (error) {
                 console.error("Error fetching meta data:", error);
-                setMetaTitle("Static Page");
+                setMetaTitle("Apurva Chemicals");
                 setMetaDescription("Default meta description for static pages.");
                 setMetaKeyword("default, static, page");
             }
@@ -140,4 +140,4 @@ const useDocumentTitle = () => {
     }, [metaTitle, metaDescription, metaKeyword]);
 };
 
-export default useDocumentTitle;
+export default UseDocumentTitle;
