@@ -108,10 +108,7 @@ function App() {
     <UseDocumentTitle/> 
       <DynamicMetaTags />
       <Routes>
-        {/* Define the main layout route */}
-        {!isLoggedIn ? (
-          <>
-            <Route path="/thankyou" element={<ThankYouPage />} />
+       <Route path="/thankyou" element={<ThankYouPage />} />
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path="/about-us" element={<AboutPage />} />
@@ -126,6 +123,10 @@ function App() {
               {/* <Route path="/:categorySlug/:subCategorySlug" element={<SubCategoryProductGrid />} /> */}
 
             </Route>
+        {/* Define the main layout route */}
+        {!isLoggedIn ? (
+          <>
+           
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
