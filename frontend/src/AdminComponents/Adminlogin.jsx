@@ -21,7 +21,7 @@ function AdminLogin() {
             setIsLoading(false);
             const { token } = response.data;
             Cookies.set('jwt', token);
-            window.location.href = "/"
+            window.location.href = "/dashboard"
         } catch (error) {
             setIsLoading(false);
             if (error.response) {
