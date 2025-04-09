@@ -294,7 +294,6 @@ app.use("/api/staticMeta", (req, res, next) => {
     invalidateCache('/api/staticMeta')(req, res, next);
   }
 }, require("./routes/staticMeta"));
-
 // Add cache cleanup on interval (optional)
 setInterval(() => {
   console.log('Cleaning expired cache entries');
