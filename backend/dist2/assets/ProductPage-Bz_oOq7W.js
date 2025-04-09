@@ -1,1 +1,0 @@
-import{j as i}from"./react-vendor-BcDAcFMN.js";import{P as o}from"./index-ByLAX9j6.js";import"./icons-fa-sotRo3iS.js";import"./icons-lu-Boswb5w9.js";import"./icons-gi-B0Bbx5xv.js";import"./icons-si-BVJeGb-t.js";import"./icons-ri-yCK3Pvr_.js";import"./ui-components-Cv51jqMd.js";function s(){return i.jsx(i.Fragment,{children:i.jsx(o,{})})}export{s as default};
