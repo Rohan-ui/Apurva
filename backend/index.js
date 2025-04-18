@@ -9,15 +9,28 @@ const { exportAndBackupAllCollectionsmonthly } = require("./controller/Backup");
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const mcache = require('memory-cache');
-//test
+const { generateAllSitemaps } = require('./routes/mysitemap');
+
 const app = express();
+
 // Enable compression
 app.use(compression());
-app.use(express.json()); 
+app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "dist"), {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.xml')) {
+
+// Serve static files from the 'public' folder
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.xml')) {
+      res.setHeader('Content-Type', 'application/xml');
+    }
+  }
+}));
+
+// Serve static files from the 'dist' folder
+app.use(express.static(path.join(__dirname, 'dist'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.xml')) {
       res.setHeader('Content-Type', 'application/xml');
     }
   }
@@ -46,17 +59,17 @@ const cache = (duration) => {
 // Cache invalidation middleware
 const invalidateCache = (route) => {
   return (req, res, next) => {
-    // For wildcard invalidation of all cache entries that start with the route
     const cacheKeys = mcache.keys();
     for (const key of cacheKeys) {
       if (key.includes(route)) {
         mcache.del(key);
       }
     }
-    next(); 
+    next();
   };
 };
 
+// Schedule monthly backup
 cron.schedule('59 23 31 * *', () => {
   exportAndBackupAllCollectionsmonthly();
 }, {
@@ -64,8 +77,22 @@ cron.schedule('59 23 31 * *', () => {
   timezone: "Asia/Kolkata"
 });
 
-// Static file serving
-app.use('/uploads', serveStatic(path.join(__dirname, 'uploads')));
+// Serve uploads
+app.use('/uploads', serveStatic(path.join(__dirname, 'Uploads')));
+
+// Serve sitemap.xml from public folder at /sitemap
+app.get('/sitemap', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'), {
+    headers: {
+      'Content-Type': 'application/xml'
+    }
+  }, (err) => {
+    if (err) {
+      console.error('Error serving sitemap.xml:', err);
+      res.status(404).send('Sitemap not found');
+    }
+  });
+});
 
 // Database connection
 mongoose.connect(process.env.DATABASE_URI).then(() => {
@@ -75,10 +102,9 @@ mongoose.connect(process.env.DATABASE_URI).then(() => {
 });
 
 // Use routes with caching
-// Default cache duration in seconds (5 minutes)
 const defaultCacheDuration = 300;
 
-// GET requests are cached, POST/PUT/DELETE requests invalidate the cache
+// Existing routes
 app.use('/api/product', (req, res, next) => {
   if (req.method === 'GET') {
     cache(defaultCacheDuration)(req, res, next);
@@ -86,8 +112,9 @@ app.use('/api/product', (req, res, next) => {
     invalidateCache('/api/product')(req, res, next);
   }
 }, require('./routes/product'));
+
 app.use('/api/news', (req, res, next) => {
-  if (req.method === 'GET') { 
+  if (req.method === 'GET') {
     cache(defaultCacheDuration)(req, res, next);
   } else {
     invalidateCache('/api/news')(req, res, next);
@@ -101,6 +128,7 @@ app.use('/api/pageHeading', (req, res, next) => {
     invalidateCache('/api/pageHeading')(req, res, next);
   }
 }, require('./routes/pageHeading'));
+
 app.use('/api/image', (req, res, next) => {
   if (req.method === 'GET') {
     cache(defaultCacheDuration)(req, res, next);
@@ -133,7 +161,6 @@ app.use('/api/aboutus', (req, res, next) => {
   }
 }, require('./routes/abotus'));
 
-// Admin routes - shorter cache or no cache for sensitive data
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/password', require('./routes/forgotpassword'));
 
@@ -195,7 +222,7 @@ app.use('/api/googlesettings', (req, res, next) => {
     invalidateCache('/api/googlesettings')(req, res, next);
   }
 }, require('./routes/googlesettings'));
- 
+
 app.use('/api/menulisting', (req, res, next) => {
   if (req.method === 'GET') {
     cache(defaultCacheDuration)(req, res, next);
@@ -203,14 +230,6 @@ app.use('/api/menulisting', (req, res, next) => {
     invalidateCache('/api/menulisting')(req, res, next);
   }
 }, require('./routes/menulisting'));
-
-app.use('/api/sitemap', (req, res, next) => {
-  if (req.method === 'GET') {
-    cache(defaultCacheDuration)(req, res, next);
-  } else {
-    invalidateCache('/api/sitemap')(req, res, next);
-  }
-}, require('./routes/sitemap'));
 
 app.use('/api/productDetail', (req, res, next) => {
   if (req.method === 'GET') {
@@ -229,6 +248,7 @@ app.use('/api/colors', (req, res, next) => {
     invalidateCache('/api/colors')(req, res, next);
   }
 }, require('./routes/managecolor'));
+
 app.use('/api/partners', (req, res, next) => {
   if (req.method === 'GET') {
     cache(defaultCacheDuration)(req, res, next);
@@ -285,14 +305,17 @@ app.use('/api/industry', (req, res, next) => {
   }
 }, require('./routes/industry'));
 
-app.use("/api/staticMeta", (req, res, next) => {
+app.use('/api/staticMeta', (req, res, next) => {
   if (req.method === 'GET') {
     cache(defaultCacheDuration)(req, res, next);
   } else {
     invalidateCache('/api/staticMeta')(req, res, next);
   }
-}, require("./routes/staticMeta"));
-// Add cache cleanup on interval (optional)
+}, require('./routes/staticMeta'));
+
+app.use('/api/sitemap', require('./routes/sitemapRoute'));
+
+// Cache cleanup interval
 setInterval(() => {
   console.log('Cleaning expired cache entries');
   mcache.keys().forEach(key => {
@@ -302,8 +325,7 @@ setInterval(() => {
   });
 }, 3600000); // Run every hour
 
-app.use(express.static(path.join(__dirname, 'dist')));
-
+// Fallback for SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
@@ -311,4 +333,5 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 3006;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  generateAllSitemaps(); // Generate sitemaps on server start
 });
