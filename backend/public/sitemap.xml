@@ -2,19 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://apurvachemicals.com/sitemap.xml</loc>
-    <lastmod>2025-04-18T12:15:27.823Z</lastmod>
+
+    <lastmod>2025-04-18T12:29:51.484Z</lastmod>
+
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://apurvachemicals.com/blog-sitemap.xml</loc>
-    <lastmod>2025-04-18T12:15:28.834Z</lastmod>
+
+    <lastmod>2025-04-18T12:29:52.291Z</lastmod>
+
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
     <loc>https://apurvachemicals.com/chemical-sitemap.xml</loc>
-    <lastmod>2025-04-18T12:15:28.926Z</lastmod>
+    <lastmod>2025-04-18T12:29:52.554Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
