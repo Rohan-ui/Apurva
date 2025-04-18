@@ -118,7 +118,7 @@ function ProductDetail() {
             value={productData.details}
             modules={{ toolbar: false }}
             theme="bubble"
-            className="quill "
+            className="quill overflow"
           />
         </p>
       </div>

@@ -56,24 +56,42 @@ body .space-y-10 > :not([hidden]) ~ :not([hidden]) {
     margin-right: 0;
   }
 
+ 
+  
+/* Bullet point and list styling for Quill */
+.ql-editor ul,
+.ql-editor ol {
+  padding-left: 1.5rem !important; /* Provide space for bullets or numbers */
+  margin: 1rem 0;
+}
 
-  .ql-editor li {
-    font-size: 20px;
-    margin: 10px 0px;
-    padding: 0px;
-  }
+.ql-editor li {
+  font-size: 14px;
+  margin: 0.5rem 0;
+  padding-left: 0.5rem;
+}
 
-  .ql-editor ol {
-    font-size: 20px;
-    padding: 0px;
-  }
+.ql-editor ul li::before {
+  content: '•';
+  color: #333;
+  font-weight: bold;
+  display: inline-block;
+  width: 1rem;
+  margin-left: -1.5rem;
+  margin-right: 0.5rem;
+}
 
+.ql-editor ol {
+  list-style: decimal inside;
+}
 
-  .ql-editor ul {
-    font-size: 18px;
-    padding: 0 !important;
-  }
+.ql-editor ul {
+  list-style: disc inside;
+}
 
+  
+
+  
 
 
   @media (max-width: 576px) {
