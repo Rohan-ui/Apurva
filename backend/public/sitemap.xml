@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+<<<<<<< HEAD
     <loc>https://apurvachemicals.com//sitemap.xml</loc>
     <lastmod>2025-04-18T11:40:48.733Z</lastmod>
+=======
+    <loc>https://apurvachemicals.com/sitemap.xml</loc>
+    <lastmod>2025-04-18T11:20:48.681Z</lastmod>
+>>>>>>> 6ded0689c8989da25196e54159c686c590af801d
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.5</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://apurvachemicals.com//blog-sitemap.xml</loc>
     <lastmod>2025-04-18T11:40:49.576Z</lastmod>
+=======
+    <loc>https://apurvachemicals.com/blog-sitemap.xml</loc>
+    <lastmod>2025-04-18T11:20:49.398Z</lastmod>
+>>>>>>> 6ded0689c8989da25196e54159c686c590af801d
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.98</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://apurvachemicals.com//chemical-sitemap.xml</loc>
     <lastmod>2025-04-18T11:40:49.750Z</lastmod>
+=======
+    <loc>https://apurvachemicals.com/chemical-sitemap.xml</loc>
+    <lastmod>2025-04-18T11:20:49.509Z</lastmod>
+>>>>>>> 6ded0689c8989da25196e54159c686c590af801d
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
   </url>
 </urlset>

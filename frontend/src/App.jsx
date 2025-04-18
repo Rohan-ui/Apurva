@@ -1,66 +1,65 @@
 import './App.css';
-import './quill.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './quill.css';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet'; // Import Helmet
 import Sidebar from './AdminComponents/Sidebar';
-import News from "./AdminComponents/Pages/News";
-import CreateNews from "./AdminComponents/Pages/CreateNews";
+import News from './AdminComponents/Pages/News';
+import CreateNews from './AdminComponents/Pages/CreateNews';
 import EditNews from './AdminComponents/Pages/EditNews';
-import NewsCategory from "./AdminComponents/Pages/NewsCategory";
-import CreateNewsCategory from "./AdminComponents/Pages/CreateNewsCategory";
-import EditNewsCategory from "./AdminComponents/Pages/EditNewsCategory";
-import OurStaff from "./AdminComponents/Pages/Staff";
-import CreateStaff from "./AdminComponents/Pages/CreateStaff";
+import NewsCategory from './AdminComponents/Pages/NewsCategory';
+import CreateNewsCategory from './AdminComponents/Pages/CreateNewsCategory';
+import EditNewsCategory from './AdminComponents/Pages/EditNewsCategory';
+import OurStaff from './AdminComponents/Pages/Staff';
+import CreateStaff from './AdminComponents/Pages/CreateStaff';
 import EditStaff from './AdminComponents/Pages/EditStaff';
-import Banner from "./AdminComponents/Pages/Banner";
-import CreateBanner from "./AdminComponents/Pages/CreateBanner";
-import EditBanner from "./AdminComponents/Pages/EditBanner";
-import Partners from "./AdminComponents/Pages/Partners"
-import CreatePartners from "./AdminComponents/Pages/CreatePartners"
-import EditPartners from "./AdminComponents/Pages/EditPartners"
-import ProductCategory from "./AdminComponents/Pages/ProductCategory";
-import CreateProductCategory from "./AdminComponents/Pages/CreateCategory";
-import EditCategory from "./AdminComponents/Pages/EditCategory";
-import Product from "./AdminComponents/Pages/Product";
-import CreateProduct from "./AdminComponents/Pages/CreateProduct";
-import EditProduct from "./AdminComponents/Pages/EditProduct";
-import Dashboard from "./AdminComponents/Pages/Dashboard";
-import Signup from "./AdminComponents/Adminsignup";
-import Login from "./AdminComponents/Adminlogin";
-import VerifyOTP from "./AdminComponents/VerifyOTP";
-import ResetPassword from "./AdminComponents/ResetPassword";
+import Banner from './AdminComponents/Pages/Banner';
+import CreateBanner from './AdminComponents/Pages/CreateBanner';
+import EditBanner from './AdminComponents/Pages/EditBanner';
+import Partners from './AdminComponents/Pages/Partners';
+import CreatePartners from './AdminComponents/Pages/CreatePartners';
+import EditPartners from './AdminComponents/Pages/EditPartners';
+import ProductCategory from './AdminComponents/Pages/ProductCategory';
+import CreateProductCategory from './AdminComponents/Pages/CreateCategory';
+import EditCategory from './AdminComponents/Pages/EditCategory';
+import Product from './AdminComponents/Pages/Product';
+import CreateProduct from './AdminComponents/Pages/CreateProduct';
+import EditProduct from './AdminComponents/Pages/EditProduct';
+import Dashboard from './AdminComponents/Pages/Dashboard';
+import Signup from './AdminComponents/Adminsignup';
+import Login from './AdminComponents/Adminlogin';
+import VerifyOTP from './AdminComponents/VerifyOTP';
+import ResetPassword from './AdminComponents/ResetPassword';
 import EditAboutus from './AdminComponents/Pages/EditAboutus';
 import ForgetPassword from './AdminComponents/ForgotPassword';
 import DatabaseManagement from './AdminComponents/Pages/DatabaseManagement';
-import ManagePassword from "./AdminComponents/Pages/ManagePassword";
-import Logo from "./AdminComponents/Pages/Logo";
-import Cookies from "js-cookie";
-
-import Inquiry from "./AdminComponents/Pages/Inquiry"
-import Footer from "./AdminComponents/Pages/Footer"
-import Header from "./AdminComponents/Pages/Header"
-import GoogleSettings from "./AdminComponents/Pages/GoogleSettings"
-import Menulisting from "./AdminComponents/Pages/Menulisting"
-import CreateMenulisting from "./AdminComponents/Pages/CreateMenulisting"
-import EditMenulisting from "./AdminComponents/Pages/EditMenulisting"
-import Sitemap from "./AdminComponents/Pages/Sitemap"
-import CreateSitemap from "./AdminComponents/Pages/CreateSitemap"
-import EditSitemap from "./AdminComponents/Pages/EditSitemap"
-import Metadetails from "./AdminComponents/Pages/Metadetails"
-import EditMetadetails from "./AdminComponents/Pages/EditMetadetails"
-import ManageProfile from "./AdminComponents/Pages/ManageProfile"
+import ManagePassword from './AdminComponents/Pages/ManagePassword';
+import Logo from './AdminComponents/Pages/Logo';
+import Cookies from 'js-cookie';
+import Inquiry from './AdminComponents/Pages/Inquiry';
+import Footer from './AdminComponents/Pages/Footer';
+import Header from './AdminComponents/Pages/Header';
+import GoogleSettings from './AdminComponents/Pages/GoogleSettings';
+import Menulisting from './AdminComponents/Pages/Menulisting';
+import CreateMenulisting from './AdminComponents/Pages/CreateMenulisting';
+import EditMenulisting from './AdminComponents/Pages/EditMenulisting';
+import Sitemap from './AdminComponents/Pages/Sitemap';
+import CreateSitemap from './AdminComponents/Pages/CreateSitemap';
+import EditSitemap from './AdminComponents/Pages/EditSitemap';
+import Metadetails from './AdminComponents/Pages/Metadetails';
+import EditMetadetails from './AdminComponents/Pages/EditMetadetails';
+import ManageProfile from './AdminComponents/Pages/ManageProfile';
 import MissionAndVision from './AdminComponents/Pages/MissionAndVision';
-import ManageColor from "./AdminComponents/Pages/ManageColor"
-import CreateProductDetail from "./AdminComponents/Pages/CreateProductDetail"
-import EditProductDetail from "./AdminComponents/Pages/EditProductDetail"
-import ProductInquiry from "./AdminComponents/Pages/Productinquiry"
+import ManageColor from './AdminComponents/Pages/ManageColor';
+import CreateProductDetail from './AdminComponents/Pages/CreateProductDetail';
+import EditProductDetail from './AdminComponents/Pages/EditProductDetail';
+import ProductInquiry from './AdminComponents/Pages/Productinquiry';
 import WhyChooseUS from './AdminComponents/Pages/WhyChooseUs';
 import CreateWhyChooseUS from './AdminComponents/Pages/CreateWhyChooseUs';
 import EditWhyChooseUs from './AdminComponents/Pages/EditWhyChooseUs';
-import PackagingDetail from "./AdminComponents/Pages/PackagingDetail"
+import PackagingDetail from './AdminComponents/Pages/PackagingDetail';
 import PackagingType from './AdminComponents/Pages/PackagingType';
-import CreatePackagingType  from './AdminComponents/Pages/CreatePackagingType';
+import CreatePackagingType from './AdminComponents/Pages/CreatePackagingType';
 import EditPackagingType from './AdminComponents/Pages/EditPackagingType';
-
 import DynamicMetaTags from './Clientcomponents/DynamicMeta';
 import HomePage from './Clientpages/HomePage';
 import AboutPage from './Clientpages/AboutPage';
@@ -72,12 +71,12 @@ import TeamPage from './Clientpages/TeamPage';
 import ThankYouPage from './Clientcomponents/Thankyou';
 import OurPeople from './AdminComponents/Pages/OurPeople';
 import SlugPage from './Clientpages/SlugPage';
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import UseDocumentTitle from './AdminComponents/Pages/metaInfo/DynamicData';
 import MetaList from './AdminComponents/Pages/metaInfo/MetaInfoTable';
 import StaticMetaForm from './AdminComponents/Pages/metaInfo/StaticMetaInfoForm';
+
 const setFavicon = (faviconUrl) => {
   let link = document.querySelector("link[rel~='icon']");
   if (!link) {
@@ -90,6 +89,8 @@ const setFavicon = (faviconUrl) => {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation(); // Hook to get current route
+
   useEffect(() => {
     const token = Cookies.get('jwt');
     if (token) {
@@ -98,25 +99,25 @@ function App() {
     } else {
       console.log("User is not logged in");
     }
-  
+
     // Fetch and set favicon
     axios.get('/api/logo/getfavicon')
       .then(res => {
-        console.log(res.data)
+        console.log(res.data);
         if (res.data && res.data.photo) {
           const faviconUrl = `/api/logo/download/${res.data.photo}`;
-          console.log(faviconUrl)
+          console.log(faviconUrl);
           setFavicon(faviconUrl);
         }
       })
       .catch(err => console.error('Error loading favicon:', err));
   }, []);
-  
+
   useEffect(() => {
     const token = Cookies.get('jwt');
     if (token) {
       setIsLoggedIn(true);
-      console.log(token)
+      console.log(token);
       console.log("User is logged in");
     } else {
       console.log("User is not logged in");
@@ -125,38 +126,45 @@ function App() {
 
   const checkAuth = async () => {
     try {
-        const response = await axios.get('/api/auth/check', { withCredentials: true });
-        setIsAuthenticated(response.data.isAuthenticated);
+      const response = await axios.get('/api/auth/check', { withCredentials: true });
+      setIsAuthenticated(response.data.isAuthenticated);
     } catch (error) {
-        // Handle unauthenticated state quietly
-        setIsAuthenticated(false);
+      setIsAuthenticated(false);
     }
   };
 
   return (
-    <BrowserRouter>
-    <UseDocumentTitle/> 
+    <>
+      {/* Conditionally render Helmet for GTM script and meta tag on "/" path */}
+      {location.pathname === '/' && (
+        <Helmet>
+          <meta name="google-site-verification" content="cvbi2s3p1Ahsp6JoEtvO3cOHgZSXSTefMFjD4pEvmgI" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD63FPNG0X"></script>
+          <script>
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-LD63FPNG0X');
+            `}
+          </script>
+        </Helmet>
+      )}
+      <UseDocumentTitle />
       <DynamicMetaTags />
       <Routes>
-       <Route path="/thankyou" element={<ThankYouPage />} />
-            <Route path="/" element={<Layout />}>
-              <Route index element={<HomePage />} />
-              <Route path="/about-us" element={<AboutPage />} />
-              {/* <Route path="/:slugs" element={<SingleBlogPage />} /> */}
-              <Route path="/:slug" element={<SlugPage />} /> 
-              <Route path="/products" element={<ProductPage />} />
-              <Route path="/team" element={<TeamPage />} />
-              <Route path="/contact-us" element={<ContactusPage />} />
-               <Route path="/blogs" element={<BlogPage />} />
-              {/* <Route path="/product/:slugs" element={<ProductDetailPage />} />
-              <Route path="/productcategories/:slugs" element={<ProductCategoryGrid />} /> */}
-              {/* <Route path="/:categorySlug/:subCategorySlug" element={<SubCategoryProductGrid />} /> */}
-
-            </Route>
-        {/* Define the main layout route */}
+        <Route path="/thankyou" element={<ThankYouPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/:slug" element={<SlugPage />} />
+          <Route path="/products" element={<ProductPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/contact-us" element={<ContactusPage />} />
+          <Route path="/blogs" element={<BlogPage />} />
+        </Route>
         {!isLoggedIn ? (
           <>
-           
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
@@ -216,20 +224,24 @@ function App() {
             <Route path="/metadetails" element={<Metadetails />} />
             <Route path="/metadetails/editmetaDetails/:id/:type" element={<EditMetadetails />} />
             <Route path="/manageTheme" element={<ManageColor />} />
-            
             <Route path="/ourpeople" element={<OurPeople />} />
             <Route path="/packagingdetail" element={<PackagingDetail />} />
-
-            {/* //meta info  */}
             <Route path="/meta" element={<MetaList />} />
-            <Route path="/meta/meta-form" element={<StaticMetaForm />} />``
+            <Route path="/meta/meta-form" element={<StaticMetaForm />} />
             <Route path="/meta/edit-meta-form/:id" element={<StaticMetaForm />} />
-
           </Route>
         )}
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
-export default App;
+export default function AppWrapper() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+
+}
+
