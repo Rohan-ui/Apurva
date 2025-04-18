@@ -86,7 +86,6 @@ app.use('/api/product', (req, res, next) => {
     invalidateCache('/api/product')(req, res, next);
   }
 }, require('./routes/product'));
-
 app.use('/api/news', (req, res, next) => {
   if (req.method === 'GET') { 
     cache(defaultCacheDuration)(req, res, next);
