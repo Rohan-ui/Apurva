@@ -10,6 +10,7 @@ const sitemapSchema = new mongoose.Schema({
     type: Date,
     default: Date.now, // Set the default timestamp to the current date and time
   },
+  priority: { type: Number, default: 0.5 } // Add priority field with default
 });
 
 // Middleware to update the timestamp automatically on save
