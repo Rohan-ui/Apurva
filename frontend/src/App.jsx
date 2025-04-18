@@ -242,4 +242,6 @@ export default function AppWrapper() {
       <App />
     </BrowserRouter>
   );
+
 }
+
