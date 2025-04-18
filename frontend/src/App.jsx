@@ -1,7 +1,6 @@
 import './App.css';
 import './quill.css';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet'; // Import Helmet
 import Sidebar from './AdminComponents/Sidebar';
 import News from './AdminComponents/Pages/News';
 import CreateNews from './AdminComponents/Pages/CreateNews';
@@ -124,6 +123,59 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    // Function to add GTM script and meta tag
+    const addGtmScript = () => {
+      // Add Google Site Verification Meta Tag
+      const meta = document.createElement('meta');
+      meta.name = 'google-site-verification';
+      meta.content = 'cvbi2s3p1Ahsp6JoEtvO3cOHgZSXSTefMFjD4pEvmgI';
+      meta.id = 'google-site-verification'; // Add ID for easy removal
+      document.head.appendChild(meta);
+
+      // Add GTM Script (gtag.js)
+      const gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-LD63FPNG0X';
+      gtagScript.id = 'gtag-script'; // Add ID for easy removal
+      document.head.appendChild(gtagScript);
+
+      // Add GTM Config Script
+      const configScript = document.createElement('script');
+      configScript.id = 'gtag-config'; // Add ID for easy removal
+      configScript.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-LD63FPNG0X');
+      `;
+      document.head.appendChild(configScript);
+    };
+
+    // Function to remove GTM script and meta tag
+    const removeGtmScript = () => {
+      const meta = document.getElementById('google-site-verification');
+      const gtagScript = document.getElementById('gtag-script');
+      const configScript = document.getElementById('gtag-config');
+
+      if (meta) meta.remove();
+      if (gtagScript) gtagScript.remove();
+      if (configScript) configScript.remove();
+    };
+
+    // Add or remove GTM script based on the current path
+    if (location.pathname === '/') {
+      addGtmScript();
+    } else {
+      removeGtmScript();
+    }
+
+    // Cleanup on route change or component unmount
+    return () => {
+      removeGtmScript();
+    };
+  }, [location.pathname]); // Run effect when pathname changes
+
   const checkAuth = async () => {
     try {
       const response = await axios.get('/api/auth/check', { withCredentials: true });
@@ -135,21 +187,6 @@ function App() {
 
   return (
     <>
-      {/* Conditionally render Helmet for GTM script and meta tag on "/" path */}
-      {location.pathname === '/' && (
-        <Helmet>
-          <meta name="google-site-verification" content="cvbi2s3p1Ahsp6JoEtvO3cOHgZSXSTefMFjD4pEvmgI" />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD63FPNG0X"></script>
-          <script>
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-LD63FPNG0X');
-            `}
-          </script>
-        </Helmet>
-      )}
       <UseDocumentTitle />
       <DynamicMetaTags />
       <Routes>
@@ -242,6 +279,4 @@ export default function AppWrapper() {
       <App />
     </BrowserRouter>
   );
-
 }
-
