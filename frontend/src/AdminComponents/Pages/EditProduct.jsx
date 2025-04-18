@@ -56,7 +56,7 @@ const EditProductForm = () => {
             setMetacanonical(product.metacanonical);
             setMetaschema(product.metaschema);
             setOthermeta(product.otherMeta);
-            product.url ? setUrl(product.url) : setUrl(`https://apurvachemicals/product/${product.slug}`)
+            product.url ? setUrl(product.url) : setUrl(`https://apurvachemicals/${product.slug}`)
             setChangeFreq(product.changeFreq)
             setPriority(product.priority)
 
@@ -237,26 +237,26 @@ const EditProductForm = () => {
 
     useEffect(() => {
         if (slug) {
-            setUrl(`https://apurvachemicals.com/product/${slug}`);
+            setUrl(`https://apurvachemicals.com/${slug}`);
         }
     }, [slug]);
 
     useEffect(() => {
         setSlug(title.replace(/\s+/g, '-')
-          .toLowerCase()
-          .replace(/[^a-z0-9-]/g, '')
-          .replace(/--+/g, '-')
-          .replace(/^-+/, '')
-          .replace(/-+$/, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9-]/g, '')
+            .replace(/--+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '')
         );
-      }, [title])
-    
-      useEffect(() => {
+    }, [title])
+
+    useEffect(() => {
         setSlug(slug.toLowerCase()
-          .replace(/[^a-z0-9-]/g, '')
-          .replace(/--+/g, '-')
+            .replace(/[^a-z0-9-]/g, '')
+            .replace(/--+/g, '-')
         );
-      }, [slug])
+    }, [slug])
 
     return (
         <form onSubmit={handleSubmit} className="p-4">
@@ -299,8 +299,9 @@ const EditProductForm = () => {
                     value={details}
                     onChange={(value) => setDetails(value)}
                     modules={modules}
-                    className="border rounded focus:outline-none overflow-y-scroll"
+                    className="border rounded focus:outline-none custom-quill"
                 />
+
             </div>
             <div className="mb-4">
                 <label className="block font-semibold mb-2">Current Photos</label>
@@ -429,7 +430,7 @@ const EditProductForm = () => {
                     disabled
                     type="url"
                     id="url"
-                    value={`https://apurvachemicals.com/product/${slug}`}
+                    value={`https://apurvachemicals.com/${slug}`}
                     className="w-full p-2 border rounded focus:outline-none"
                 />
             </div>

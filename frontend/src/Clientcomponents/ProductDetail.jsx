@@ -49,7 +49,7 @@ function ProductDetail() {
     fetchData()
     fetchRelatedData()
   }, [slug]) // Add slug as a dependency
-  
+
   const fetchData = async () => {
     try {
       const response = await axios.get(`/api/product/getDataBySlug?slugs=${slug}`)
@@ -101,8 +101,8 @@ function ProductDetail() {
                 <ProductDetailsTable details={productDetails} />
               </div>
               <div className="space-x-5 md:space-y-2">
-                <MSDSSection msds={productData.msds} name ={productData.title} spec={productData.spec} />
-              
+                <MSDSSection msds={productData.msds} name={productData.title} spec={productData.spec} />
+
               </div>
             </div>
           )}
@@ -113,13 +113,11 @@ function ProductDetail() {
       <div className="flex flex-col justify-center items-center mx-2 md:mx-20">
         <p className="bg-gray-100 mt-5 w-[87%]  mx-2 md:mx-20 p-5 rounded-lg">
           <span className="text-xl  font-bold text-red-700">Description:-</span>
-          <ReactQuill
-            readOnly={true}
-            value={productData.details}
-            modules={{ toolbar: false }}
-            theme="bubble"
-            className="quill overflow"
-          />
+          <div
+            className="prose max-w-none quill overflow"
+            dangerouslySetInnerHTML={{ __html: productData.details }}
+          ></div>
+
         </p>
       </div>
 
