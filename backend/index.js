@@ -101,7 +101,6 @@ app.use('/api/pageHeading', (req, res, next) => {
     invalidateCache('/api/pageHeading')(req, res, next);
   }
 }, require('./routes/pageHeading'));
-
 app.use('/api/image', (req, res, next) => {
   if (req.method === 'GET') {
     cache(defaultCacheDuration)(req, res, next);
