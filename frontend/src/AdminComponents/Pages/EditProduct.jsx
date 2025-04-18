@@ -299,7 +299,7 @@ const EditProductForm = () => {
                     value={details}
                     onChange={(value) => setDetails(value)}
                     modules={modules}
-                    className="border rounded focus:outline-none"
+                    className="border rounded focus:outline-none overflow-y-scroll"
                 />
             </div>
             <div className="mb-4">
