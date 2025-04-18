@@ -78,10 +78,40 @@ import axios from 'axios';
 import UseDocumentTitle from './AdminComponents/Pages/metaInfo/DynamicData';
 import MetaList from './AdminComponents/Pages/metaInfo/MetaInfoTable';
 import StaticMetaForm from './AdminComponents/Pages/metaInfo/StaticMetaInfoForm';
+const setFavicon = (faviconUrl) => {
+  let link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.href = faviconUrl;
+};
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  useEffect(() => {
+    const token = Cookies.get('jwt');
+    if (token) {
+      setIsLoggedIn(true);
+      console.log("User is logged in");
+    } else {
+      console.log("User is not logged in");
+    }
+  
+    // Fetch and set favicon
+    axios.get('/api/logo/getfavicon')
+      .then(res => {
+        console.log(res.data)
+        if (res.data && res.data.photo) {
+          const faviconUrl = `/api/logo/download/${res.data.photo}`;
+          console.log(faviconUrl)
+          setFavicon(faviconUrl);
+        }
+      })
+      .catch(err => console.error('Error loading favicon:', err));
+  }, []);
+  
   useEffect(() => {
     const token = Cookies.get('jwt');
     if (token) {
@@ -113,7 +143,7 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="/about-us" element={<AboutPage />} />
               {/* <Route path="/:slugs" element={<SingleBlogPage />} /> */}
-              <Route path="/:slug" element={<SlugPage />} />
+              <Route path="/:slug" element={<SlugPage />} /> 
               <Route path="/products" element={<ProductPage />} />
               <Route path="/team" element={<TeamPage />} />
               <Route path="/contact-us" element={<ContactusPage />} />

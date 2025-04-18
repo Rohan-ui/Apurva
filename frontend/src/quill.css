@@ -38,6 +38,11 @@
     line-height: 26px;
 }
 
+.custom-quill .ql-editor {
+  max-height: 500px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
 
 body .space-y-10 > :not([hidden]) ~ :not([hidden]) {
   margin-top: 0 !important;
