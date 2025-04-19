@@ -27,14 +27,6 @@ app.use(express.static(path.join(__dirname, 'public'), {
   }
 }));
 
-// Serve static files from the 'dist' folder
-app.use(express.static(path.join(__dirname, 'dist'), {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.xml')) {
-      res.setHeader('Content-Type', 'application/xml');
-    }
-  }
-}));
 
 // Cache middleware
 const cache = (duration) => {
@@ -81,19 +73,14 @@ cron.schedule('59 23 31 * *', () => {
 app.use('/uploads', serveStatic(path.join(__dirname, 'Uploads')));
 
 // Serve sitemap.xml from public folder at /sitemap
-app.get('/sitemap', (req, res) => {
+// Add a specific route for sitemap.xml at the root path
+app.get('/sitemap.xml', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'), {
     headers: {
       'Content-Type': 'application/xml'
     }
-  }, (err) => {
-    if (err) {
-      console.error('Error serving sitemap.xml:', err);
-      res.status(404).send('Sitemap not found');
-    }
   });
 });
-
 // Database connection
 mongoose.connect(process.env.DATABASE_URI).then(() => {
   console.log('Connected to MongoDB');
@@ -328,6 +315,15 @@ setInterval(() => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
+
+// // Serve static files from the 'dist' folder
+// app.use(express.static(path.join(__dirname, 'dist'), {
+//   setHeaders: (res, filePath) => {
+//     if (filePath.endsWith('.xml')) {
+//       res.setHeader('Content-Type', 'application/xml');
+//     }
+//   }
+// }));
 const port = process.env.PORT || 3006;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
