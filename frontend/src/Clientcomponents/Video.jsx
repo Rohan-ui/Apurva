@@ -283,7 +283,7 @@ function Video() {
 
                         {location.pathname !== '/about-us' && (
                             <div className='flex justify-center md:justify-start'>
-                                <Link to="/aboutus" className='cursor-pointer bg-primary hover:bg-secondary text-white font-semibold p-4 md:px-7 rounded uppercase'>Know More</Link>
+                                <Link to="/about-us" className='cursor-pointer bg-primary hover:bg-secondary text-white font-semibold p-4 md:px-7 rounded uppercase'>Know More</Link>
                             </div>
                         )}
                     </div>
