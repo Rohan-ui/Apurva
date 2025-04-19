@@ -198,6 +198,7 @@ function DesktopMenu({ menuItems, handleMenuItemClick, colorlogo, phoneNo, setSh
 // Sub-component for desktop menu items
 function DesktopMenuItem({ item, handleMenuItemClick, isLoading }) {
     const [subMenuLoaded, setSubMenuLoaded] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to track dropdown visibility
 
     useEffect(() => {
         if (item.subItems) {
@@ -208,33 +209,52 @@ function DesktopMenuItem({ item, handleMenuItemClick, isLoading }) {
         }
     }, [item.subItems]);
 
+    const handleItemClick = (path) => {
+        handleMenuItemClick(path); // Call the parent click handler
+        setIsDropdownOpen(false); // Close the dropdown
+    };
+
     return (
-        <div className='relative cursor-pointer flex items-center font-montserrat group hover:text-secondary py-4'>
-            <div onClick={() => handleMenuItemClick(item.path)} className='inline-block'>
+        <div
+            className="relative cursor-pointer flex items-center font-montserrat group hover:text-secondary py-4"
+            onMouseEnter={() => setIsDropdownOpen(true)} // Open dropdown on hover
+            onMouseLeave={() => setIsDropdownOpen(false)} // Close dropdown when mouse leaves
+        >
+            <div onClick={() => handleItemClick(item.path)} className="inline-block">
                 {item.pagename}
             </div>
 
-            {item.subItems && <span className='ml-1'><IoIosArrowDown /></span>}
+            {item.subItems && <span className="ml-1"><IoIosArrowDown /></span>}
 
-            {item.subItems && (
-                <ul className='absolute top-full left-0 rounded w-48 z-20 hidden group-hover:block transition-opacity duration-300'>
+            {item.subItems && isDropdownOpen && ( // Show dropdown only if it's open
+                <ul className="absolute top-full left-0 rounded w-48 z-20 transition-opacity duration-300">
                     {!subMenuLoaded ? (
                         Array(3).fill().map((_, index) => (
-                            <li key={index} className='px-4 py-2 shadow-md border-b-1 border-gray-400 bg-white'>
+                            <li key={index} className="px-4 py-2 shadow-md border-b-1 border-gray-400 bg-white">
                                 <div className="h-5 w-32 bg-gray-200 animate-pulse rounded"></div>
                             </li>
                         ))
                     ) : (
                         item.subItems.map((subItem, subIndex) => (
-                            <li key={subIndex} className='px-4 py-2 shadow-md text-primary border-b-1 border-gray-400 bg-white hover:shadow-lg relative group/subitem'>
-                                <div onClick={() => handleMenuItemClick(subItem.path)} className='flex justify-between items-center'>
+                            <li
+                                key={subIndex}
+                                className="px-4 py-2 shadow-md text-primary border-b-1 border-gray-400 bg-white hover:shadow-lg relative group/subitem"
+                            >
+                                <div
+                                    onClick={() => handleItemClick(subItem.path)} // Close dropdown on click
+                                    className="flex justify-between items-center"
+                                >
                                     {subItem.title}
                                 </div>
 
                                 {subItem.subsubItems && (
-                                    <ul className='bg-white border border-gray-500 w-[40rem] absolute left-full top-0 hidden group-hover/subitem:grid grid-cols-2'>
+                                    <ul className="bg-white border border-gray-500 w-[40rem] absolute left-full top-0 hidden group-hover/subitem:grid grid-cols-2">
                                         {subItem.subsubItems.map((subsubItem, subsubIndex) => (
-                                            <li key={subsubIndex} className='p-2 px-6 bg-white hover:text-white text-black hover:bg-primary' onClick={() => handleMenuItemClick(subsubItem.path)}>
+                                            <li
+                                                key={subsubIndex}
+                                                className="p-2 px-6 bg-white hover:text-white text-black hover:bg-primary"
+                                                onClick={() => handleItemClick(subsubItem.path)} // Close dropdown on click
+                                            >
                                                 {subsubItem.title}
                                             </li>
                                         ))}
