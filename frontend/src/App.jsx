@@ -130,18 +130,19 @@ function App() {
       const meta = document.createElement('meta');
       meta.name = 'google-site-verification';
       meta.content = 'cvbi2s3p1Ahsp6JoEtvO3cOHgZSXSTefMFjD4pEvmgI';
+      // No ID added to match exact output: <meta name="google-site-verification" content="..." />
       document.head.appendChild(meta);
-
+  
       // Add GTM Script (gtag.js)
       const gtagScript = document.createElement('script');
       gtagScript.async = true;
       gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-LD63FPNG0X';
-      gtagScript.id = 'gtag-script'; // Add ID for easy removal
+      gtagScript.id = 'gtag-script'; // Keep ID for removal
       document.head.appendChild(gtagScript);
-
+  
       // Add GTM Config Script
       const configScript = document.createElement('script');
-      configScript.id = 'gtag-config'; // Add ID for easy removal
+      configScript.id = 'gtag-config'; // Keep ID for removal
       configScript.innerHTML = `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -150,31 +151,32 @@ function App() {
       `;
       document.head.appendChild(configScript);
     };
-
+  
     // Function to remove GTM script and meta tag
     const removeGtmScript = () => {
-      const meta = document.getElementById('google-site-verification');
+      // Find meta tag by name instead of ID
+      const meta = document.querySelector('meta[name="google-site-verification"]');
       const gtagScript = document.getElementById('gtag-script');
       const configScript = document.getElementById('gtag-config');
-
+  
       if (meta) meta.remove();
       if (gtagScript) gtagScript.remove();
       if (configScript) configScript.remove();
     };
-
+  
     // Add or remove GTM script based on the current path
     if (location.pathname === '/') {
       addGtmScript();
     } else {
       removeGtmScript();
     }
-
+  
     // Cleanup on route change or component unmount
     return () => {
       removeGtmScript();
     };
   }, [location.pathname]); // Run effect when pathname changes
-
+  
   const checkAuth = async () => {
     try {
       const response = await axios.get('/api/auth/check', { withCredentials: true });
