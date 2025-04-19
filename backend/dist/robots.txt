@@ -20,7 +20,6 @@ Disallow: /*.js$
 Disallow: /*.css$
 
 # Sitemap location
-Sitemap: https://yourdomain.com/sitemap.xml
-
+Sitemap: https://www.apurvachemicals.com/sitemap.xml
 # Crawl delay to prevent server overload
 Crawl-delay: 10
