@@ -196,6 +196,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/:slug" element={<SlugPage />} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/team" element={<TeamPage />} />

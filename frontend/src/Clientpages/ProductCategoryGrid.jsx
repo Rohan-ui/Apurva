@@ -57,26 +57,27 @@ function ProductCategoryGrid() {
               <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
             </div>
           </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16 m-4'>
+
+{product.map((product, index) => (
+  <ServiceCard
+    key={product.id}
+    imageSrc={product.photo && product.photo.length > 0 && `/api/image/download/${product.photo[0]}`}
+    icon={iconMap[index % iconMap.length]}
+    title={product.title}
+    imgTitle={product.imgTitle}
+    alt={product.alt}
+    slug={product.slug}
+  />
+))}
+
+</div>
           <p
-  className="text-center mx-auto w-[80%] font-semibold m-8"
+  className="quill mx-auto w-[80%] font-semibold m-8"
   dangerouslySetInnerHTML={{ __html: category.description }}
 ></p>
         </>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16 m-4'>
-
-        {product.map((product, index) => (
-          <ServiceCard
-            key={product.id}
-            imageSrc={product.photo && product.photo.length > 0 && `/api/image/download/${product.photo[0]}`}
-            icon={iconMap[index % iconMap.length]}
-            title={product.title}
-            imgTitle={product.imgTitle}
-            alt={product.alt}
-            slug={product.slug}
-          />
-        ))}
-
-      </div>
+   
     </div>
   );
 }
