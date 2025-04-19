@@ -130,7 +130,6 @@ function App() {
       const meta = document.createElement('meta');
       meta.name = 'google-site-verification';
       meta.content = 'cvbi2s3p1Ahsp6JoEtvO3cOHgZSXSTefMFjD4pEvmgI';
-      meta.id = 'google-site-verification'; // Add ID for easy removal
       document.head.appendChild(meta);
 
       // Add GTM Script (gtag.js)
