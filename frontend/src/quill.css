@@ -94,10 +94,6 @@ body .space-y-10 > :not([hidden]) ~ :not([hidden]) {
   list-style: disc inside;
 }
 
-  
-
-  
-
 
   @media (max-width: 576px) {
     .ql-editor  {
@@ -145,4 +141,29 @@ body .space-y-10 > :not([hidden]) ~ :not([hidden]) {
 /* Hide the logo if not needed */
 .rc-anchor-logo-portrait {
   display: none !important; /* Hide the logo */
+}
+
+.quill {
+  ul {
+    list-style-type: disc; /* Ensure bullet points are displayed */
+    margin-left: 1.5rem;
+  }
+
+  ol {
+    list-style-type: decimal; /* Ensure numbered lists are displayed */
+    margin-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  b,
+  strong {
+    font-weight: bold; /* Ensure bold text is styled */
+  }
+
+  p {
+    margin-bottom: 1rem; /* Add spacing between paragraphs */
+  }
 }

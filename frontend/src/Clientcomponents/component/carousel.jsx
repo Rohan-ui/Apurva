@@ -75,9 +75,9 @@ export default function IndustrySectors() {
     <div className="py-12 px-4 mb-10 md:px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-semibold text-red-800 mb-2">
+          <h1 className="text-2xl font-semibold text-red-800 mb-2">
             APURVA CHEMICALS PVT LTD.
-          </h2>
+          </h1>
           <h3 className="text-4xl font-bold text-gray-600 mb-4">
             Industry Sectors
           </h3>
