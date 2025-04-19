@@ -4,7 +4,7 @@ const axios = require("axios");
 const Sitemap = require("../model/mysitemap");
 
 // Base configuration
-const BASE_URL = "https://apurvachemicals.com/";
+const BASE_URL = "https://www.apurvachemicals.com/";
 const BLOG_API_URL = `${BASE_URL}/api/news/getActiveNews`;
 const CHEMICAL_API_URL = `${BASE_URL}/api/product/getProductsByCategory?categorySlug=dye-intermediate`;
 const SITEMAP_API_URL = `${BASE_URL}/api/sitemap/get`;

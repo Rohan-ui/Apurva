@@ -167,3 +167,14 @@ body .space-y-10 > :not([hidden]) ~ :not([hidden]) {
     margin-bottom: 1rem; /* Add spacing between paragraphs */
   }
 }
+
+/* filepath: src/index.css or src/App.css */
+.quill a {
+  color: #bf2e2e; /* Default hyperlink color (DodgerBlue) */
+  text-decoration: none; /* Remove underline */
+}
+
+.quill a:hover {
+  color: #bf2e2e; /* Hover color (OrangeRed) */
+  text-decoration: underline; /* Add underline on hover */
+}
