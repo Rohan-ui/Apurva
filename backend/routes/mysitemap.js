@@ -34,7 +34,7 @@ const generateBlogSitemap = async () => {
           return;
         }
         xmlContent += `  <url>\n`;
-        xmlContent += `    <loc>${BASE_URL}blog/${blog.slug}</loc>\n`;
+        xmlContent += `    <loc>${BASE_URL}${blog.slug}</loc>\n`;
         xmlContent += `    <lastmod>${new Date(blog.updatedAt).toISOString()}</lastmod>\n`;
         xmlContent += `    <changefreq>weekly</changefreq>\n`;
         xmlContent += `    <priority>0.98</priority>\n`; // Set priority to 0.98
