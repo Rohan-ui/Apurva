@@ -57,7 +57,10 @@ function ProductCategoryGrid() {
               <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
             </div>
           </div>
-          <p className='text-center mx-auto w-[80%] font-semibold m-8'>{category.description}</p>
+          <p
+  className="text-center mx-auto w-[80%] font-semibold m-8"
+  dangerouslySetInnerHTML={{ __html: category.description }}
+></p>
         </>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16 m-4'>
 

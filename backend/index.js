@@ -324,7 +324,6 @@ setInterval(() => {
     }
   });
 }, 3600000); // Run every hour
-
 // Fallback for SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));

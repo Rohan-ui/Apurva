@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const EditCategory = () => {
   const { categoryId } = useParams();  // Only use categoryId
@@ -158,13 +160,13 @@ const EditCategory = () => {
         <label htmlFor="description" className="block font-semibold mb-2">
           Description
         </label>
-        <textarea
+        <ReactQuill
           id="description"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={setDescription}
           className="w-full p-2 border rounded focus:outline-none"
-          rows="3"
-        ></textarea>
+          theme="snow"
+        />
       </div>
       <div className="mb-8">
         <label htmlFor="photo" className="block font-semibold mb-2">Photo</label>
