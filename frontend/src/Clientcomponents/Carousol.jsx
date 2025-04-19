@@ -162,7 +162,7 @@ function Carousol() {
                                     <div onClick={() => setShowInquiryForm(true)}>
                                         <button className='bg-primary hover:bg-secondary text-white text-lg font-medium p-4 rounded lg:px-7'>INQUIRY NOW</button>
                                     </div>
-                                    <Link to="/aboutus">
+                                    <Link to="/about-us">
                                         <button className='bg-gray-700 hover:bg-gray-600 text-white text-lg font-medium p-4 rounded lg:px-7'>ABOUT US</button>
                                     </Link>
                                 </div>
