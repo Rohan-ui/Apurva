@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link, useParams } from "react-router-dom"
 import axios from "axios"
 import ReactQuill from "react-quill"
@@ -24,52 +24,61 @@ const iconMap = [
   SiMicrogenetics,
   RiTestTubeLine,
 ]
+import "../quill.css"
 
 function ProductDetail() {
-  const { slug } = useParams()
-  const [productData, setProductData] = useState({})
-  const [productDetails, setProductDetails] = useState({})
-  const [showInquiryForm, setShowInquiryForm] = useState(false)
-  const [activeSection, setActiveSection] = useState("details")
-  const [relatedProducts, setRelatedProducts] = useState([])
+  const { slug } = useParams();
+  const [productData, setProductData] = useState({});
+  const [productDetails, setProductDetails] = useState({});
+  const [showInquiryForm, setShowInquiryForm] = useState(false);
+  const [activeSection, setActiveSection] = useState("details");
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [showFullContent, setShowFullContent] = useState(false); // State to toggle content visibility
+  const descriptionRef = useRef(null); // Define descriptionRef
 
   useEffect(() => {
     if (showInquiryForm) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ""
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = ""
-    }
-  }, [showInquiryForm])
+      document.body.style.overflow = "";
+    };
+  }, [showInquiryForm]);
 
   useEffect(() => {
-    fetchData()
-    fetchRelatedData()
-  }, [slug]) // Add slug as a dependency
+    fetchData();
+    fetchRelatedData();
+  }, [slug]); // Add slug as a dependency
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/product/getDataBySlug?slugs=${slug}`)
-      const { productData, productDetailData } = response.data
-      console.log(productData.msds)
-      setProductData(productData)
-      setProductDetails(productDetailData)
+      const response = await axios.get(`/api/product/getDataBySlug?slugs=${slug}`);
+      const { productData, productDetailData } = response.data;
+      console.log(productData.msds);
+      setProductData(productData);
+      setProductDetails(productDetailData);
     } catch (error) {
-      console.error("Error fetching product data:", error)
+      console.error("Error fetching product data:", error);
     }
-  }
+  };
 
   const fetchRelatedData = async () => {
     try {
-      const response = await axios.get(`/api/product/getRelatedProducts?slugs=${slug}`)
-      setRelatedProducts(response.data)
+      const response = await axios.get(`/api/product/getRelatedProducts?slugs=${slug}`);
+      setRelatedProducts(response.data);
     } catch (error) {
-      console.error("Error fetching related products:", error)
+      console.error("Error fetching related products:", error);
     }
-  }
+  };
+
+  const getPartialContent = (htmlContent) => {
+    const contentLength = htmlContent.length;
+    const partialLength = Math.floor(contentLength * 0.3); // 30% of the content
+    return htmlContent.substring(0, partialLength) + "...";
+  };
 
   return (
     <>
@@ -97,7 +106,7 @@ function ProductDetail() {
           {activeSection === "details" && (
             <div className="">
               <div className="  ">
-                <h2 className="text-2xl border-b-2 w-fit border-red-700 font-bold text-primary mb-3"> {productData.title}</h2>
+                <h1 className="text-2xl border-b-2 w-fit border-red-700 font-bold text-primary mb-3"> {productData.title}</h1>
                 <ProductDetailsTable details={productDetails} />
               </div>
               <div className="space-x-5 md:space-y-2">
@@ -109,17 +118,35 @@ function ProductDetail() {
         </div>
       </div>
 
-
-      <div className="flex flex-col justify-center items-center mx-2 md:mx-20">
-        <p className="bg-gray-100 mt-5 w-[87%]  mx-2 md:mx-20 p-5 rounded-lg">
-          <span className="text-xl  font-bold text-red-700">Description:-</span>
-          <div
-            className="prose max-w-none quill overflow"
-            dangerouslySetInnerHTML={{ __html: productData.details }}
-          ></div>
-
-        </p>
-      </div>
+      <div
+  ref={descriptionRef}
+  className="flex flex-col justify-center items-center mx-2 md:mx-20"
+>
+  <p className="bg-gray-100 mt-5 w-[87%] mx-2 md:mx-20 p-5 rounded-lg">
+    <span className="text-xl font-bold text-red-700 ">Description:-</span>
+    <ReactQuill
+      value={showFullContent ? productData.details : getPartialContent(productData.details || "")}
+      readOnly={true}
+      theme={null} // Disable toolbar and editor UI
+      className="quill mt-3"
+    />
+    {!showFullContent ? (
+      <button
+        className="text-red-700 mt-2 hover:underline"
+        onClick={() => setShowFullContent(true)}
+      >
+        Read More
+      </button>
+    ) : (
+      <button
+        className="text-red-700 hover:underline"
+        onClick={() => setShowFullContent(false)}
+      >
+        Show Less
+      </button>
+    )}
+  </p>
+</div>
 
 
 

@@ -8,24 +8,24 @@
 }
 
 .ql-editor h1 {
-    font-size: 24px;
+    font-size: 30px;
     line-height: 40px;
 }
 
 .ql-editor h2 {
-    font-size: 20px;
+    font-size: 27px;
     line-height: 30px;
 }
 
 .ql-editor h3 {
-    font-size: 16px;
+    font-size: 23px;
     line-height: 30px;
     text-align: justify;
     
 }
 
 .ql-editor h4 {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 26px;
 }
 .ql-editor h5 {
@@ -94,10 +94,6 @@ body .space-y-10 > :not([hidden]) ~ :not([hidden]) {
   list-style: disc inside;
 }
 
-  
-
-  
-
 
   @media (max-width: 576px) {
     .ql-editor  {
@@ -145,4 +141,40 @@ body .space-y-10 > :not([hidden]) ~ :not([hidden]) {
 /* Hide the logo if not needed */
 .rc-anchor-logo-portrait {
   display: none !important; /* Hide the logo */
+}
+
+.quill {
+  ul {
+    list-style-type: disc; /* Ensure bullet points are displayed */
+    margin-left: 1.5rem;
+  }
+
+  ol {
+    list-style-type: decimal; /* Ensure numbered lists are displayed */
+    margin-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  b,
+  strong {
+    font-weight: bold; /* Ensure bold text is styled */
+  }
+
+  p {
+    margin-bottom: 1rem; /* Add spacing between paragraphs */
+  }
+}
+
+/* filepath: src/index.css or src/App.css */
+.quill a {
+  color: #bf2e2e; /* Default hyperlink color (DodgerBlue) */
+  text-decoration: none; /* Remove underline */
+}
+
+.quill a:hover {
+  color: #bf2e2e; /* Hover color (OrangeRed) */
+  text-decoration: underline; /* Add underline on hover */
 }

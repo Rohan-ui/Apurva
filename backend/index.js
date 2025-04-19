@@ -324,14 +324,12 @@ setInterval(() => {
     }
   });
 }, 3600000); // Run every hour
-
 // Fallback for SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
-
 const port = process.env.PORT || 3006;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  generateAllSitemaps(); // Generate sitemaps on server start
-});
+  // generateAllSitemaps(); // Generate sitemaps on server start
+}); 
