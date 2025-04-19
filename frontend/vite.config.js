@@ -62,7 +62,7 @@ export default defineConfig({
     // Rollup Visualizer
     visualizer({
       filename: "dist/stats.html",
-      open: true, // Opens the visualizer report automatically after the build
+      open: false, // Opens the visualizer report automatically after the build
       gzipSize: true,
       brotliSize: true,
     }),
