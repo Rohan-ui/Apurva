@@ -21,5 +21,6 @@ Disallow: /*.css$
 
 # Sitemap location
 Sitemap: https://www.apurvachemicals.com/sitemap.xml
+
 # Crawl delay to prevent server overload
 Crawl-delay: 10
