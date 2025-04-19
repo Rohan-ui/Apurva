@@ -198,7 +198,7 @@ const WhyChooseUsTable = () => {
             </div>
             {/* <EditWhyChooseUsCounterForm /> */}
             <div className="flex justify-between items-center mb-4">
-                <h1 className="text-xl font-bold text-gray-700 font-serif uppercase">Why Choose Us</h1>
+                <h2 className="text-xl font-bold text-gray-700 font-serif uppercase">Why Choose Us</h2>
                 <button className="px-4 py-2 bg-slate-700 text-white rounded hover:bg-slate-900 transition duration-300 font-serif">
                     <Link to="/whychooseus/createwhychooseus"><FaPlus size={15} /></Link>
                 </button>
