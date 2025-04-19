@@ -10,6 +10,7 @@ import { GiDna2 } from "react-icons/gi";
 import { SiMicrogenetics } from "react-icons/si";
 import { RiTestTubeLine } from "react-icons/ri";
 import { FaArrowRight } from "react-icons/fa";
+import ReactQuill from 'react-quill';
 
 function ProductCategoryGrid() {
 
@@ -17,6 +18,12 @@ function ProductCategoryGrid() {
   const [category,setCategory]=useState([])
   const { slug } = useParams(); // Get category slug from URL
 
+  const getPartialContent = (htmlContent) => {
+    const contentLength = htmlContent.length;
+    const partialLength = Math.floor(contentLength * 0.25); // 1/4 of the content
+    return htmlContent.substring(0, partialLength) + "...";
+  };
+  const [showFullContent, setShowFullContent] = useState(false); // State to toggle content visibility
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
@@ -57,7 +64,7 @@ function ProductCategoryGrid() {
               <div className='absolute inset-0 bg-black opacity-40 z-1'></div>
             </div>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16 m-4'>
+          <div className='grid grid-cols-1 lg:mx-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16 m-4'>
 
 {product.map((product, index) => (
   <ServiceCard
@@ -71,11 +78,34 @@ function ProductCategoryGrid() {
   />
 ))}
 
-</div>
-          <p
-  className="quill mx-auto w-[80%] font-semibold m-8"
-  dangerouslySetInnerHTML={{ __html: category.description }}
-></p>
+</div>  
+<p className="quill mx-auto w-[95%] m-8">
+        <ReactQuill
+          value={
+            showFullContent
+              ? category.description || ""
+              : getPartialContent(category.description || "")
+          }
+          readOnly={true}
+          theme={null}
+          className="quill"
+        />
+        {!showFullContent ? (
+          <button
+            className="text-blue-500 mt-2 hover:underline"
+            onClick={() => setShowFullContent(true)}
+          >
+            Read More
+          </button>
+        ) : (
+          <button
+            className="text-blue-500 mt-2 hover:underline"
+            onClick={() => setShowFullContent(false)}
+          >
+            Show Less
+          </button>
+        )}
+      </p>
         </>
    
     </div>
@@ -148,7 +178,7 @@ function ServiceCard({ imageSrc, icon: Icon, title, slug, alt, imgTitle }) {
 
   return (
       <>
-          <div className={`bg-white shadow-lg group h-auto `}>
+          <div className={`bg-white shadow-lg  group h-auto `}>
             <div className='overflow-hidden '>
                 <Link to={`/${slug}`}>
                     <img src={imageSrc} alt={alt} title={imgTitle} className="w-full h-56 object-cover bg-gray-100 transform group-hover:scale-125 transition duration-500" />

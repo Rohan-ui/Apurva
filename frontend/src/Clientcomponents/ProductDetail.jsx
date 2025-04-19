@@ -24,6 +24,7 @@ const iconMap = [
   SiMicrogenetics,
   RiTestTubeLine,
 ]
+import "../quill.css"
 
 function ProductDetail() {
   const { slug } = useParams();
@@ -118,36 +119,34 @@ function ProductDetail() {
       </div>
 
       <div
-        ref={descriptionRef}
-        className="flex flex-col justify-center items-center mx-2 md:mx-20"
+  ref={descriptionRef}
+  className="flex flex-col justify-center items-center mx-2 md:mx-20"
+>
+  <p className="bg-gray-100 mt-5 w-[87%] mx-2 md:mx-20 p-5 rounded-lg">
+    <span className="text-xl font-bold text-red-700 ">Description:-</span>
+    <ReactQuill
+      value={showFullContent ? productData.details : getPartialContent(productData.details || "")}
+      readOnly={true}
+      theme={null} // Disable toolbar and editor UI
+      className="quill mt-3"
+    />
+    {!showFullContent ? (
+      <button
+        className="text-red-700 mt-2 hover:underline"
+        onClick={() => setShowFullContent(true)}
       >
-        <p className="bg-gray-100 mt-5 w-[87%] mx-2 md:mx-20 p-5 rounded-lg">
-          <span className="text-xl font-bold text-red-700">Description:-</span>
-          <div
-            className="prose max-w-none quill overflow"
-            dangerouslySetInnerHTML={{
-              __html: showFullContent
-                ? productData.details
-                : getPartialContent(productData.details || ""),
-            }}
-          ></div>
-          {!showFullContent ? (
-            <button
-              className="text-red-700 mt-2 hover:underline"
-              onClick={() => setShowFullContent(true)}
-            >
-              Read More
-            </button>
-          ) : (
-            <button
-              className="text-red-700 hover:underline"
-              onClick={() => setShowFullContent(false)}
-            >
-              Show Less
-            </button>
-          )}
-        </p>
-      </div>
+        Read More
+      </button>
+    ) : (
+      <button
+        className="text-red-700 hover:underline"
+        onClick={() => setShowFullContent(false)}
+      >
+        Show Less
+      </button>
+    )}
+  </p>
+</div>
 
 
 
