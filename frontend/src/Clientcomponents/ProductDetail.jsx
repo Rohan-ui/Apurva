@@ -97,7 +97,7 @@ function ProductDetail() {
           {activeSection === "details" && (
             <div className="">
               <div className="  ">
-                <h2 className="text-2xl border-b-2 w-fit border-red-700 font-bold text-primary mb-3"> {productData.title}</h2>
+                <h1 className="text-2xl border-b-2 w-fit border-red-700 font-bold text-primary mb-3"> {productData.title}</h1>
                 <ProductDetailsTable details={productDetails} />
               </div>
               <div className="space-x-5 md:space-y-2">
