@@ -75,6 +75,7 @@ import axios from 'axios';
 import UseDocumentTitle from './AdminComponents/Pages/metaInfo/DynamicData';
 import MetaList from './AdminComponents/Pages/metaInfo/MetaInfoTable';
 import StaticMetaForm from './AdminComponents/Pages/metaInfo/StaticMetaInfoForm';
+import Simple404Page from './Clientpages/404';
 
 const setFavicon = (faviconUrl) => {
   let link = document.querySelector("link[rel~='icon']");
@@ -176,7 +177,7 @@ function App() {
       removeGtmScript();
     };
   }, [location.pathname]); // Run effect when pathname changes
-  
+
   const checkAuth = async () => {
     try {
       const response = await axios.get('/api/auth/check', { withCredentials: true });
@@ -200,6 +201,7 @@ function App() {
           <Route path="/team" element={<TeamPage />} />
           <Route path="/contact-us" element={<ContactusPage />} />
           <Route path="/blogs" element={<BlogPage />} />
+          <Route path="/404" element={<Simple404Page />} />
         </Route>
         {!isLoggedIn ? (
           <>
